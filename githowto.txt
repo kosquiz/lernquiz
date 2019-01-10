@@ -1,0 +1,7 @@
+datei ändern
+
+dann
+
+git add dateiname
+git commit -m "nachricht"
+git push
