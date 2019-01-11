@@ -16,7 +16,6 @@ git pull
 ===IN NEUEN ORDNER LADEN
 in ordner wechseln
 git init
-git add origin https://github.com/kosquiz/lernquiz.git
 git remote add origin https://github.com/kosquiz/lernquiz.git
 git pull https://github.com/kosquiz/lernquiz.git
 erster push:
