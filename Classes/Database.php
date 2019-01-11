@@ -19,6 +19,16 @@ class Database{
 		$this->db->exec($sql);
 	}
 	
+	/**
+	 * insert chat message by user
+	 */
+	public function insertChat($user, $msg){
+
+	}
+
+	/**
+	 * get last 50 chat messages
+	 */
 	public function getChat(){
 		
 		$sql = $this->db->prepare("SELECT ALL ETC WHERE = ? ");
@@ -28,10 +38,27 @@ class Database{
 		
 	}
 	
+	/**
+	 * insert 1 user with pass
+	 */
 	public function insertUser($user,$pass){
 		$sql = $this->db->prepare("INSERT VALUES(?,?) ");
 		$sql->exec([$user,$pass]);
 	
+	}
+
+	/**
+	 * select 1 user with name
+	 */
+	public function checkUser($user){
+
+	}
+
+	/**
+	 * select 1 user with pass
+	 */
+	public function checkUserPass($user, $pass){
+
 	}
 	
 	public function debug(){
