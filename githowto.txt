@@ -21,3 +21,4 @@ git remote add origin https://github.com/kosquiz/lernquiz.git
 git pull https://github.com/kosquiz/lernquiz.git
 erster push:
 git push --set-upstream origin master
+dann mit git push
