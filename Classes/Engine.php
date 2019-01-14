@@ -5,7 +5,7 @@ class Engine{
     private $db;
     private $output;
 
-    public __construct($db, $output){
+    public function __construct($db, $output){
         $this->db = $db;
         $this->output = $output;
 
