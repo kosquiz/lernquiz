@@ -60,7 +60,7 @@ class Engine{
             return; 
         }
 
-        if(empty($this->db->checkUserPass($user, $pass)){
+        if(empty($this->db->checkUserPass($user, $pass))){
             $error = $this->output->loginOutput($error);
             $this->output->loginOutput($error);
             return;
