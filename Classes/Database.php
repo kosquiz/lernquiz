@@ -1,13 +1,12 @@
 <?php
 
-use PDO;
 
 class Database{
 
 	private $db;
-
+	
 	public function __construct(){
-		$this->db = new PDO("mysql:host=127.0.0.1", "root");
+		$this->db = new PDO("mysql:dbname=kosquiz;host=127.0.0.1", "root");
 		
 	}
 
@@ -23,7 +22,9 @@ class Database{
 	 * insert chat message by user
 	 */
 	public function insertChat($user, $msg){
-
+		$sql = $this->db->prepare("INSERT INTO chatmessage VALUES(null,'$','$msg','$user');");
+		$sql->exec([$user,$pass]);
+		
 	}
 
 	/**
@@ -31,18 +32,19 @@ class Database{
 	 */
 	public function getChat(){
 		
-		$sql = $this->db->prepare("SELECT ALL ETC WHERE = ? ");
-		$sql->exec([$username]);
-		
+		$sql = $this->db->prepare("SELECT * FROM chatmessage ORDER BY idChat DESC TOP 50;");
+		$sql->execute();
+		echo '<pre>';
+		print_r($sql->fetchAll());
+		echo '</pre>';
 		return $sql->fetchAll();
-		
 	}
 	
 	/**
 	 * insert 1 user with pass
 	 */
 	public function insertUser($user,$pass){
-		$sql = $this->db->prepare("INSERT VALUES(?,?) ");
+		$sql = $this->db->prepare("INSERT INTO accounts VALUES(NOW(),'$user','$pass', 0)");
 		$sql->exec([$user,$pass]);
 	
 	}
@@ -51,7 +53,12 @@ class Database{
 	 * select 1 user with name
 	 */
 	public function checkUser($user){
+		$sql = $this->db->prepare("SELECT * FROM accounts WHERE Username Like ?;");
+		$sql->execute([$user]);
+		$rows = $sql->fetchAll();
 
+		return $rows;
+	
 	}
 
 	/**
@@ -62,10 +69,8 @@ class Database{
 	}
 	
 	public function debug(){
+		$user = "Baum";
 		$rows = $this->getChat();
-		
-		echo "<pre>";
-		print_r($rows);
-		echo "</pre>";
+
 	}
 }

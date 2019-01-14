@@ -14,6 +14,7 @@ SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='TRADITIONAL,ALLOW_INVALID_DATES';
 -- -----------------------------------------------------
 -- Schema kosquiz
 -- -----------------------------------------------------
+DROP SCHEMA IF EXISTS `kosquiz`;
 CREATE SCHEMA IF NOT EXISTS `kosquiz` DEFAULT CHARACTER SET utf8 ;
 USE `kosquiz` ;
 
@@ -32,7 +33,7 @@ ENGINE = InnoDB;
 -- Table `kosquiz`.`ChatMessage`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `kosquiz`.`ChatMessage` (
-  `idChat` INT NOT NULL,
+  `idChat` INT NOT NULL AUTO_INCREMENT,
   `Time` DATETIME NOT NULL,
   `Message` VARCHAR(240) NOT NULL,
   `Accounts_Username` VARCHAR(16) NOT NULL,
@@ -50,7 +51,7 @@ ENGINE = InnoDB;
 -- Table `kosquiz`.`Score`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `kosquiz`.`Score` (
-  `idScore` INT NOT NULL,
+  `idScore` INT NOT NULL AUTO_INCREMENT,
   `Date` DATE NOT NULL,
   `Score` INT NOT NULL,
   `Accounts_Username` VARCHAR(16) NOT NULL,
@@ -68,7 +69,7 @@ ENGINE = InnoDB;
 -- Table `kosquiz`.`Question`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `kosquiz`.`Question` (
-  `idQuestion` INT NOT NULL,
+  `idQuestion` INT NOT NULL AUTO_INCREMENT,
   `Category` VARCHAR(32) NOT NULL,
   `Question` VARCHAR(1000) NOT NULL,
   `Difficulty` TINYINT NOT NULL,
@@ -80,7 +81,7 @@ ENGINE = InnoDB;
 -- Table `kosquiz`.`Answer`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `kosquiz`.`Answer` (
-  `idAnswer` INT NOT NULL,
+  `idAnswer` INT NOT NULL AUTO_INCREMENT,
   `Answer` VARCHAR(1000) NOT NULL,
   `Question_idQuestion` INT NOT NULL,
   PRIMARY KEY (`idAnswer`),
@@ -106,7 +107,7 @@ ENGINE = InnoDB;
 -- Table `kosquiz`.`GameLog`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `kosquiz`.`GameLog` (
-  `idGameLog` INT NOT NULL,
+  `idGameLog` INT NOT NULL AUTO_INCREMENT,
   `EventName` VARCHAR(200) NOT NULL,
   `Date` DATETIME NOT NULL,
   `Game_idGame` INT NOT NULL,
@@ -125,3 +126,67 @@ ENGINE = InnoDB;
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
+
+INSERT INTO accounts VALUES("Ich", "1234", 0);
+INSERT INTO accounts VALUES("DU", "1234", 0);
+INSERT INTO accounts VALUES("ER", "1234", 0);
+INSERT INTO accounts VALUES("SIE", "1234", 0);
+INSERT INTO accounts VALUES("jalil", "1234", 0);
+INSERT INTO accounts VALUES("Baum", "1234", 0);
+INSERT INTO accounts VALUES("Kuchen", "1234", 0);
+
+INSERT INTO chatmessage(Time, Message, Accounts_Username) VALUES(NOW(), "1I bims eins nicer boy", "Baum");
+INSERT INTO chatmessage(Time, Message, Accounts_Username) VALUES(NOW(), "2I bims eins nicer boy", "Baum");
+INSERT INTO chatmessage(Time, Message, Accounts_Username) VALUES(NOW(), "3I bims eins nicer boy", "Baum");
+INSERT INTO chatmessage(Time, Message, Accounts_Username) VALUES(NOW(), "4I bims eins nicer boy", "Baum");
+INSERT INTO chatmessage(Time, Message, Accounts_Username) VALUES(NOW(), "5I bims eins nicer boy", "Baum");
+INSERT INTO chatmessage(Time, Message, Accounts_Username) VALUES(NOW(), "6I bims eins nicer boy", "Baum");
+INSERT INTO chatmessage(Time, Message, Accounts_Username) VALUES(NOW(), "8I bims eins nicer boy", "Baum");
+INSERT INTO chatmessage(Time, Message, Accounts_Username) VALUES(NOW(), "9I bims eins nicer boy", "Baum");
+INSERT INTO chatmessage(Time, Message, Accounts_Username) VALUES(NOW(), "7I bims eins nicer boy", "Baum");
+INSERT INTO chatmessage(Time, Message, Accounts_Username) VALUES(NOW(), "10I bims eins nicer boy", "Baum");
+INSERT INTO chatmessage(Time, Message, Accounts_Username) VALUES(NOW(), "11I bims eins nicer boy", "Baum");
+INSERT INTO chatmessage(Time, Message, Accounts_Username) VALUES(NOW(), "12I bims eins nicer boy", "Baum");
+INSERT INTO chatmessage(Time, Message, Accounts_Username) VALUES(NOW(), "13I bims eins nicer boy", "Baum");
+INSERT INTO chatmessage(Time, Message, Accounts_Username) VALUES(NOW(), "14I bims eins nicer boy", "Baum");
+INSERT INTO chatmessage(Time, Message, Accounts_Username) VALUES(NOW(), "15I bims eins nicer boy", "Baum");
+INSERT INTO chatmessage(Time, Message, Accounts_Username) VALUES(NOW(), "16I bims eins nicer boy", "Baum");
+INSERT INTO chatmessage(Time, Message, Accounts_Username) VALUES(NOW(), "17I bims eins nicer boy", "Baum");
+INSERT INTO chatmessage(Time, Message, Accounts_Username) VALUES(NOW(), "18I bims eins nicer boy", "Baum");
+INSERT INTO chatmessage(Time, Message, Accounts_Username) VALUES(NOW(), "19I bims eins nicer boy", "Baum");
+INSERT INTO chatmessage(Time, Message, Accounts_Username) VALUES(NOW(), "20I bims eins nicer boy", "Baum");
+INSERT INTO chatmessage(Time, Message, Accounts_Username) VALUES(NOW(), "24I bims eins nicer boy", "Baum");
+INSERT INTO chatmessage(Time, Message, Accounts_Username) VALUES(NOW(), "21I bims eins nicer boy", "Baum");
+INSERT INTO chatmessage(Time, Message, Accounts_Username) VALUES(NOW(), "22I bims eins nicer boy", "Baum");
+INSERT INTO chatmessage(Time, Message, Accounts_Username) VALUES(NOW(), "23I bims eins nicer boy", "Baum");
+INSERT INTO chatmessage(Time, Message, Accounts_Username) VALUES(NOW(), "25I bims eins nicer boy", "Baum");
+INSERT INTO chatmessage(Time, Message, Accounts_Username) VALUES(NOW(), "26I bims eins nicer boy", "Baum");
+INSERT INTO chatmessage(Time, Message, Accounts_Username) VALUES(NOW(), "27I bims eins nicer boy", "Baum");
+INSERT INTO chatmessage(Time, Message, Accounts_Username) VALUES(NOW(), "28I bims eins nicer boy", "Baum");
+INSERT INTO chatmessage(Time, Message, Accounts_Username) VALUES(NOW(), "29I bims eins nicer boy", "Baum");
+INSERT INTO chatmessage(Time, Message, Accounts_Username) VALUES(NOW(), "30I bims eins nicer boy", "Baum");
+INSERT INTO chatmessage(Time, Message, Accounts_Username) VALUES(NOW(), "31I bims eins nicer boy", "Baum");
+INSERT INTO chatmessage(Time, Message, Accounts_Username) VALUES(NOW(), "32I bims eins nicer boy", "Baum");
+INSERT INTO chatmessage(Time, Message, Accounts_Username) VALUES(NOW(), "33I bims eins nicer boy", "Baum");
+INSERT INTO chatmessage(Time, Message, Accounts_Username) VALUES(NOW(), "34I bims eins nicer boy", "Baum");
+INSERT INTO chatmessage(Time, Message, Accounts_Username) VALUES(NOW(), "35I bims eins nicer boy", "Baum");
+INSERT INTO chatmessage(Time, Message, Accounts_Username) VALUES(NOW(), "36I bims eins nicer boy", "Baum");
+INSERT INTO chatmessage(Time, Message, Accounts_Username) VALUES(NOW(), "37I bims eins nicer boy", "Baum");
+INSERT INTO chatmessage(Time, Message, Accounts_Username) VALUES(NOW(), "38I bims eins nicer boy", "Baum");
+INSERT INTO chatmessage(Time, Message, Accounts_Username) VALUES(NOW(), "39I bims eins nicer boy", "Baum");
+INSERT INTO chatmessage(Time, Message, Accounts_Username) VALUES(NOW(), "40I bims eins nicer boy", "Baum");
+INSERT INTO chatmessage(Time, Message, Accounts_Username) VALUES(NOW(), "41I bims eins nicer boy", "Baum");
+INSERT INTO chatmessage(Time, Message, Accounts_Username) VALUES(NOW(), "42I bims eins nicer boy", "Baum");
+INSERT INTO chatmessage(Time, Message, Accounts_Username) VALUES(NOW(), "43I bims eins nicer boy", "Baum");
+INSERT INTO chatmessage(Time, Message, Accounts_Username) VALUES(NOW(), "44I bims eins nicer boy", "Baum");
+INSERT INTO chatmessage(Time, Message, Accounts_Username) VALUES(NOW(), "45I bims eins nicer boy", "Baum");
+INSERT INTO chatmessage(Time, Message, Accounts_Username) VALUES(NOW(), "46I bims eins nicer boy", "Baum");
+INSERT INTO chatmessage(Time, Message, Accounts_Username) VALUES(NOW(), "47I bims eins nicer boy", "Baum");
+INSERT INTO chatmessage(Time, Message, Accounts_Username) VALUES(NOW(), "48I bims eins nicer boy", "Baum");
+INSERT INTO chatmessage(Time, Message, Accounts_Username) VALUES(NOW(), "49I bims eins nicer boy", "Baum");
+INSERT INTO chatmessage(Time, Message, Accounts_Username) VALUES(NOW(), "50I bims eins nicer boy", "Baum");
+INSERT INTO chatmessage(Time, Message, Accounts_Username) VALUES(NOW(), "51I bims eins nicer boy", "Baum");
+INSERT INTO chatmessage(Time, Message, Accounts_Username) VALUES(NOW(), "52I bims eins nicer boy", "Baum");
+INSERT INTO chatmessage(Time, Message, Accounts_Username) VALUES(NOW(), "53I bims eins nicer boy", "Baum");
+INSERT INTO chatmessage(Time, Message, Accounts_Username) VALUES(NOW(), "54I bims eins nicer boy", "Baum");
+
