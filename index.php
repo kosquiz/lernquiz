@@ -37,7 +37,7 @@ switch($site){
 		$db->debug();
 		break;
 
-	case default:
+	default:
 		$engine->indexAction();
 		break;
 }
