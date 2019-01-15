@@ -1,6 +1,5 @@
 <?php
 
-
 class Database{
 
 	private $db;
@@ -14,7 +13,7 @@ class Database{
 	public function dropAndCreate(){
 		$this->db->exec("DROP SCHEMA IF EXISTS lernquiz; CREATE SCHEMA lernquiz;USE lernquiz");
 		
-		$sql = "CREATE TABLE IF NOT EXISTS blalbla";
+		$sql = "CREATE SCHEMA IF NOT EXISTS lernquiz";
 		$this->db->exec($sql);
 	}
 	
@@ -22,7 +21,7 @@ class Database{
 	 * insert chat message by user
 	 */
 	public function insertChat($user, $msg){
-		$sql = $this->db->prepare("INSERT INTO chatmessage VALUES(null,'$','$msg','$user');");
+		$sql = $this->db->prepare("INSERT INTO chatmessage(Time, Message, Accounts_Username) VALUES(NOW(), ?, ?);");
 		$sql->exec([$user,$pass]);
 		
 	}
@@ -32,19 +31,20 @@ class Database{
 	 */
 	public function getChat(){
 		
-		$sql = $this->db->prepare("SELECT * FROM chatmessage ORDER BY idChat DESC TOP 50;");
+		$sql = $this->db->prepare("SELECT * FROM chatmessage ORDER BY idChat DESC LIMIT 50;");
 		$sql->execute();
-		echo '<pre>';
-		print_r($sql->fetchAll());
-		echo '</pre>';
-		return $sql->fetchAll();
+
+		$rows = $sql->fetchAll();
+
+		return $rows;
+
 	}
 	
 	/**
 	 * insert 1 user with pass
 	 */
 	public function insertUser($user,$pass){
-		$sql = $this->db->prepare("INSERT INTO accounts VALUES(NOW(),'$user','$pass', 0)");
+		$sql = $this->db->prepare("INSERT INTO accounts VALUES(NOW(), ?, ?, 0)");
 		$sql->exec([$user,$pass]);
 	
 	}
@@ -60,6 +60,23 @@ class Database{
 		return $rows;
 	
 	}
+	
+	/**
+	 * set user activity  active
+	 */
+	public function setUserActive($user){
+		$sql = $this->db->prepare("UPDATE accounts SET IsActive = 1 WHERE Username = ?;");
+		$sql->execute([$user]);
+	}
+	
+	/**
+	 * set user activity  Inactive
+	 */
+	public function setUserInactive($user){
+		$sql = $this->db->prepare("UPDATE accounts SET IsActive = 0 WHERE Username = ?;");
+		$sql->execute([$user]);
+
+	}
 
 	/**
 	 * select 1 user with pass
@@ -70,7 +87,7 @@ class Database{
 	
 	public function debug(){
 		$user = "Baum";
-		$rows = $this->getChat();
+		$rows = $this->setUserActive($user);
 
 	}
 }

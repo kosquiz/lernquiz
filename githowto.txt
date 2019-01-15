@@ -1,4 +1,12 @@
-﻿===HOCHLADEN
+﻿===GETTING STARTED
+cd..
+cd..
+xampp
+htdocs
+lernquizgit
+
+
+===HOCHLADEN
 datei ändern
 
 dann
