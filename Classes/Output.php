@@ -45,7 +45,7 @@ class Output{
 
 	public function registerOutput($error){
 ?>
-<form>
+<form action="index.php?site=doRegister" method="post">
 	<div>
 <h2 class="logtext">Registrieren</h2>
 <label for="user"><b class="logtext">Bitte Benutzername eingeben:</b></label>
