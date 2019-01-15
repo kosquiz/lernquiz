@@ -73,9 +73,17 @@ class Database{
 	 * set user activity  Inactive
 	 */
 	public function setUserInactive($user){
+		
 		$sql = $this->db->prepare("UPDATE accounts SET IsActive = 0 WHERE Username = ?;");
 		$sql->execute([$user]);
 
+	}
+
+	/**
+	 * gets users active in last 30 seconds
+	 */
+	public function getActiveUsers(){
+		$inactive = Date("Y-m-d H:i:s", strtotime("-30 seconds"));
 	}
 
 	/**
