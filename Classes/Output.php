@@ -1,6 +1,6 @@
 
 <head>
-<link rel="stylesheet" href="LogIn.css">
+<link rel="stylesheet" href="Style.css">
 <link
 </head>
 <?php
@@ -39,8 +39,6 @@ class Output{
 		    <input type="password" placeholder="Passwort eingeben" name="pass" required><br>
 		    <button type="submit">Login</button></form><button onclick="window.location.href='index.php?site=register'">Registrieren</button>
 		</div>
-	<script> src="quiz.js"</script>
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 		<?php
 	}
 
@@ -65,11 +63,13 @@ class Output{
 	public function gameBoardOutput(){
 ?>
 <div class="chatbox">
-	<div class="written"></div>
-<input class="write" placeholder="Schreiben Sie eine Nachricht">
-<div class="center"><button type="button">Senden</button>
-<label><?php  ?></label></div>
+	<div class="written" id="chatBox"></div>
+<input class="write" id="chatInput" placeholder="Schreiben Sie eine Nachricht">
+<button class="send" id="chatSubmit" type="button">Senden</button>
+<label><?php  ?></label>
 </div>
+<script src="quiz.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 
 <?php
 	}
