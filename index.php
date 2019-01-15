@@ -17,8 +17,16 @@ switch($site){
 		$engine->loginAction();
 		break;
 
+	case "doLogin":
+		$engine->loginPostAction();
+		break;
+
 	case "register":
 		$engine->registerAction();
+		break;
+
+	case "doRegister":
+		$engine->registerPostAction();
 		break;
 
 	case "getChat":
@@ -35,6 +43,10 @@ switch($site){
 		
 	case "luisDebug":
 		$db->debug();
+		break;
+
+	case "debug":
+		$engine->debugAction();
 		break;
 
 	default:

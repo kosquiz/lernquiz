@@ -22,10 +22,14 @@ class Engine{
         }
 
 
-        $this->output->indexOutput();
+        $this->output->gameBoardOutput();
     }
 
-    public function registerAction(){
+    public function debugAction(){
+        $this->output->gameBoardOutput();
+    }
+
+    public function registerPostAction(){
 
         $user = $_POST['user'];
         $pass = password_hash($_POST['pass'], PASSWORD_DEFAULT);
@@ -47,8 +51,17 @@ class Engine{
 
     }
 
+    public function registerAction(){
+
+        $this->output->registerOutput(false);
+     
+    }
 
     public function loginAction(){
+        $this->output->loginOutput(false);
+    }
+
+    public function loginPostAction(){
 
         $user = $_POST['user'];
         $pass = password_hash($_POST['pass'], PASSWORD_DEFAULT);
