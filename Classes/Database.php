@@ -22,7 +22,7 @@ class Database{
 	 */
 	public function insertChat($user, $msg){
 		$sql = $this->db->prepare("INSERT INTO chatmessage(Time, Message, Accounts_Username) VALUES(NOW(), ?, ?);");
-		$sql->exec([$user,$pass]);
+		$sql->execute([$user,$msg]);
 		
 	}
 
@@ -34,9 +34,9 @@ class Database{
 		$sql = $this->db->prepare("SELECT * FROM chatmessage ORDER BY idChat DESC LIMIT 50;");
 		$sql->execute();
 
-		$rows = $sql->fetchAll();
+		$newestMsgs = $sql->fetchAll();
 
-		return $rows;
+		return $newestMsgs;
 
 	}
 	
@@ -44,8 +44,8 @@ class Database{
 	 * insert 1 user with pass
 	 */
 	public function insertUser($user,$pass){
-		$sql = $this->db->prepare("INSERT INTO accounts VALUES(NOW(), ?, ?, 0)");
-		$sql->exec([$user,$pass]);
+		$sql = $this->db->prepare("INSERT INTO accounts VALUES(?, ?)");
+		$sql->execute([$user,$pass]);
 	
 	}
 
@@ -55,26 +55,18 @@ class Database{
 	public function checkUser($user){
 		$sql = $this->db->prepare("SELECT * FROM accounts WHERE Username Like ?;");
 		$sql->execute([$user]);
-		$rows = $sql->fetchAll();
+		$currUser = $sql->fetchAll();
 
-		return $rows;
+		return $currUser;
 	
-	}
-	
-	/**
-	 * set user activity  active
-	 */
-	public function setUserActive($user){
-		$sql = $this->db->prepare("UPDATE accounts SET IsActive = 1 WHERE Username = ?;");
-		$sql->execute([$user]);
 	}
 	
 	/**
 	 * set user activity  Inactive
 	 */
-	public function setUserInactive($user){
+	public function setUserActivity($user){
 		
-		$sql = $this->db->prepare("UPDATE accounts SET IsActive = 0 WHERE Username = ?;");
+		$sql = $this->db->prepare("UPDATE accounts SET LastActivity = NOW() WHERE Username = ?;");
 		$sql->execute([$user]);
 
 	}
@@ -84,6 +76,13 @@ class Database{
 	 */
 	public function getActiveUsers(){
 		$inactive = Date("Y-m-d H:i:s", strtotime("-30 seconds"));
+		
+		$sql = $this->db->prepare("SELECT * FROM accounts WHERE LastActivity = '$inactive'");
+		$sql->execute([$user]);
+		
+		$activeUsers = $sql->fetchAll();
+
+		return $activeUsers;
 	}
 
 	/**
