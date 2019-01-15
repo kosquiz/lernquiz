@@ -17,7 +17,7 @@ $(document).ready(function(){
     setTimeout(function(){
         $.ajax({
             type: "GET",
-            url = "index.php?site=getChat",
+            url: "index.php?site=getChat",
             success: function(res){
                 console.log(res, "chat");
                 $('#chatBox').empty().html(res['chat']);
