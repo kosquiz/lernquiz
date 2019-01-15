@@ -44,9 +44,10 @@ class Database{
 	 * insert 1 user with pass
 	 */
 	public function insertUser($user,$pass){
-		$sql = $this->db->prepare("INSERT INTO accounts VALUES(?, ?)");
+		$sql = $this->db->prepare("INSERT INTO accounts VALUES(?, ?, NOW())");
 		$sql->execute([$user,$pass]);
 	
+		echo "hi";
 	}
 
 	/**

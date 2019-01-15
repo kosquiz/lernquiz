@@ -16,8 +16,12 @@ class Engine{
 
     public function indexAction(){
 
+        echo "<pre>";
+        print_r($_SESSION);
+        echo "</pre>";
+
         if($_SESSION['logged_in']==false){
-            header('Location: index.php?site=login');
+            //header('Location: index.php?site=login');
             return;
         }
 
@@ -37,18 +41,21 @@ class Engine{
         $error = "";
         if(empty($user) || empty($pass)){
             $error = "Bitte Benutzernamen und Passwort eingeben";
+            echo $error;
             $this->output->registerOutput($error);
             return; 
         }
 
         if(!empty($this->db->checkUser($user))){
             $error = "Benutzer existiert schon!";
+            echo $error;
             $this->output->registerOutput($error);
             return;
         }
 
         $this->db->insertUser($user,$pass);
 
+        echo "hi $user $pass";
     }
 
     public function registerAction(){
@@ -69,12 +76,14 @@ class Engine{
         $error = "";
         if(empty($user) || empty($pass)){
             $error = "Bitte Benutzernamen und Passwort eingeben";
+            echo $error;
             $this->output->loginOutput($error);
             return; 
         }
 
         if(empty($this->db->checkUserPass($user, $pass))){
-            $error = $this->output->loginOutput($error);
+            $error = "Falsche Kombination Benutzername und Passwort";
+            echo $error;
             $this->output->loginOutput($error);
             return;
         }
@@ -82,7 +91,12 @@ class Engine{
         $_SESSION['logged_in'] = true;
         $_SESSION['user'] = $user;
         
-        header('Location: index.php');
+
+        echo "<pre>";
+        print_r($_SESSION);
+        echo "</pre>";
+
+        //header('Location: index.php');
 
     }
 
