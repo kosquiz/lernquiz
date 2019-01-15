@@ -9,7 +9,7 @@ class Engine{
         $this->db = $db;
         $this->output = $output;
 
-        session_start();
+        
     }
 
 
@@ -26,7 +26,7 @@ class Engine{
     }
 
     public function debugAction(){
-        $this->output->gameBoardOutput();
+        $this->output->gameBoardOutput(false);
     }
 
     public function registerPostAction(){

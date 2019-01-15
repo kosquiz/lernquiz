@@ -4,6 +4,9 @@ require_once "Classes/Output.php";
 require_once "Classes/Database.php";
 require_once "Classes/Engine.php";
 
+session_set_cookie_params('3600'); // 1 hour
+session_start();
+
 $out = new Output();
 $db = new Database();
 $engine = new Engine($db, $out);
