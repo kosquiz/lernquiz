@@ -44,10 +44,9 @@ class Database{
 	 * insert 1 user with pass
 	 */
 	public function insertUser($user,$pass){
-		$sql = $this->db->prepare("INSERT INTO accounts VALUES(?, ?, NOW())");
+		$sql = $this->db->prepare("INSERT INTO accounts VALUES(?, ?, 0)");
 		$sql->execute([$user,$pass]);
-	
-		echo "hi";
+		
 	}
 
 	/**
@@ -90,12 +89,19 @@ class Database{
 	 * select 1 user with pass
 	 */
 	public function checkUserPass($user, $pass){
+		$sql = $this->db->prepare("SELECT * FROM accounts WHERE Username LIKE ? AND Password LIKE ?;");
+		$sql->execute([$user, $pass]);
+		
+		$currUser = $sql->fetchAll();
+		
+		return $currUser;
 
 	}
 	
 	public function debug(){
 		$user = "Baum";
-		$rows = $this->setUserActive($user);
+		$pass = "123"
+		$rows = $this->insertUser($user,$pass);
 
 	}
 }
