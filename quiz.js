@@ -48,8 +48,14 @@ function buildChat(chat){
     chat.reverse();
     chat.forEach(function(line){
         var date = new Date(line['Time']);
-        var showDate = date.getHours() + ":" + date.getMinutes();
+        var showDate = date.getHours().pad() + ":" + date.getMinutes().pad();
         html += "[" + showDate + "] " + line['Accounts_Username'] + " | " + line['Message'] + "<br>";
     })
     return html;
+}
+
+Number.prototype.pad = function(size) {
+    var s = String(this);
+    while (s.length < (size || 2)) {s = "0" + s;}
+    return s;
 }
