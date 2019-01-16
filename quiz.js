@@ -14,13 +14,14 @@ $(document).ready(function(){
 
 
     //REFRESH CHAT
-    setTimeout(function(){
+    setInterval(function(){
         $.ajax({
             type: "GET",
             url: "index.php?site=getChat",
             success: function(res){
-                console.log(res, "chat");
-                $('#chatBox').empty().html(res['chat']);
+                res = JSON.parse(res);
+                var html = buildChat(res['chat']);
+                $('#chatBox').empty().html(html);
             }
         })
     }, 500);
@@ -40,4 +41,15 @@ function submitChat(){
             console.log(res, "success");
         }
     })
+}
+
+function buildChat(chat){
+    var html = "";
+    chat.reverse();
+    chat.forEach(function(line){
+        var date = new Date(line['Time']);
+        var showDate = date.getHours() + ":" + date.getMinutes();
+        html += "[" + showDate + "] " + line['Accounts_Username'] + " | " + line['Message'] + "<br>";
+    })
+    return html;
 }

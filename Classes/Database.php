@@ -22,7 +22,7 @@ class Database{
 	 */
 	public function insertChat($user, $msg){
 		$sql = $this->db->prepare("INSERT INTO chatmessage(Time, Message, Accounts_Username) VALUES(NOW(), ?, ?);");
-		$sql->execute([$user,$msg]);
+		$sql->execute([$msg,$user]);
 		
 	}
 
@@ -88,11 +88,11 @@ class Database{
 	/**
 	 * select 1 user with pass
 	 */
-	public function checkUserPass($user, $pass){
-		$sql = $this->db->prepare("SELECT * FROM accounts WHERE Username LIKE ? AND Password LIKE ?;");
-		$sql->execute([$user, $pass]);
+	public function checkUserPass($user){
+		$sql = $this->db->prepare("SELECT * FROM accounts WHERE Username LIKE ?");
+		$sql->execute([$user]);
 		
-		$currUser = $sql->fetchAll();
+		$currUser = $sql->fetch();
 		
 		return $currUser;
 
@@ -100,7 +100,7 @@ class Database{
 	
 	public function debug(){
 		$user = "Baum";
-		$pass = "123"
+		$pass = "123";
 		$rows = $this->insertUser($user,$pass);
 
 	}

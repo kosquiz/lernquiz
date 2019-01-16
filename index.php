@@ -12,7 +12,9 @@ $db = new Database();
 $engine = new Engine($db, $out);
 
 
-$site = $_GET['site'];
+$site = null;
+if(array_key_exists('site', $_GET))
+	$site = $_GET['site'];
 
 switch($site){
 	

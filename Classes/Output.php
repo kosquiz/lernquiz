@@ -1,8 +1,5 @@
 
-<head>
-<link rel="stylesheet" href="Style.css">
-<link
-</head>
+
 <?php
 
 class Output{
@@ -29,6 +26,7 @@ class Output{
 
 	public function loginOutput($variables){
 		?>
+		<link rel="stylesheet" href="Style.css">
 				<form action="index.php?site=doLogin" method="post" id="loginform">
 					<div class="log">
 		<h2 class="logtext">Login</h2>
@@ -37,7 +35,7 @@ class Output{
 				<br>
 		    <label for="pass"><b class="logtext">Passwort:</b></label>
 		    <input type="password" placeholder="Passwort eingeben" name="pass" required><br>
-		    <button type="submit">Login</button></form><button onclick="window.location.href='index.php?site=register'">Registrieren</button>
+		    <button type="submit">Login</button></form><button type="button" onclick="window.location.href='index.php?site=register'">Registrieren</button>
 		</div>
 		<?php
 	}
@@ -45,6 +43,7 @@ class Output{
 
 	public function registerOutput($error){
 ?>
+<link rel="stylesheet" href="Style.css">
 <form action="index.php?site=doRegister" method="post">
 	<div>
 <h2 class="logtext">Registrieren</h2>
@@ -54,7 +53,7 @@ class Output{
 <br>
 <label for="pass"><b class="logtext">Bitte geben Sie ein Passwort ein:</b></label>
 <div><input type="password" placeholder="Passwort eingeben" name="pass" required><div><br>
-<button type="submit">Registrieren</button></form><button onclick="window.location.href='index.php?site=login'">Zurück zum Login</button>
+<button type="submit">Registrieren</button></form><button type="button" onclick="window.location.href='index.php?site=login'">Zurück zum Login</button>
 </div>
 <?php
 
@@ -62,14 +61,18 @@ class Output{
 
 	public function gameBoardOutput(){
 ?>
+
+<link rel="stylesheet" href="Style.css">
+
 <div class="chatbox">
 	<div class="written" id="chatBox"></div>
 <input class="write" id="chatInput" placeholder="Schreiben Sie eine Nachricht">
 <button class="send" id="chatSubmit" type="button">Senden</button>
 <label><?php  ?></label>
 </div>
-<script src="quiz.js"></script>
+
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+	<script src="quiz.js"></script>
 
 <?php
 	}
