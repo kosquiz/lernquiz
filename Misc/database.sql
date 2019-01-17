@@ -7,7 +7,6 @@ SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='TRADITIONAL,ALLOW_INVALID_DATES';
 -- -----------------------------------------------------
 -- Schema kosquiz
 -- -----------------------------------------------------
-DROP SCHEMA IF EXISTS `kosquiz` ;
 
 -- -----------------------------------------------------
 -- Schema kosquiz
@@ -18,8 +17,6 @@ USE `kosquiz` ;
 -- -----------------------------------------------------
 -- Table `kosquiz`.`Accounts`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `kosquiz`.`Accounts` ;
-
 CREATE TABLE IF NOT EXISTS `kosquiz`.`Accounts` (
   `Username` VARCHAR(16) NULL,
   `Password` VARCHAR(2000) NOT NULL,
@@ -29,20 +26,50 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
+-- Table `kosquiz`.`Game`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `kosquiz`.`Game` (
+  `idGame` INT NOT NULL AUTO_INCREMENT,
+  PRIMARY KEY (`idGame`))
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `kosquiz`.`GameRoom`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `kosquiz`.`GameRoom` (
+  `idGameRoom` INT NOT NULL AUTO_INCREMENT,
+  `Game_idGame` INT NOT NULL,
+  PRIMARY KEY (`idGameRoom`),
+  INDEX `fk_GameRoom_Game1_idx` (`Game_idGame` ASC),
+  CONSTRAINT `fk_GameRoom_Game1`
+    FOREIGN KEY (`Game_idGame`)
+    REFERENCES `kosquiz`.`Game` (`idGame`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
 -- Table `kosquiz`.`ChatMessage`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `kosquiz`.`ChatMessage` ;
-
 CREATE TABLE IF NOT EXISTS `kosquiz`.`ChatMessage` (
   `idChat` INT NOT NULL AUTO_INCREMENT,
   `Time` DATETIME NOT NULL,
   `Message` VARCHAR(240) NOT NULL,
   `Accounts_Username` VARCHAR(16) NOT NULL,
+  `GameRoom_idGameRoom` INT NOT NULL,
   PRIMARY KEY (`idChat`),
   INDEX `fk_ChatMessage_Accounts1_idx` (`Accounts_Username` ASC),
+  INDEX `fk_ChatMessage_GameRoom1_idx` (`GameRoom_idGameRoom` ASC),
   CONSTRAINT `fk_ChatMessage_Accounts1`
     FOREIGN KEY (`Accounts_Username`)
     REFERENCES `kosquiz`.`Accounts` (`Username`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_ChatMessage_GameRoom1`
+    FOREIGN KEY (`GameRoom_idGameRoom`)
+    REFERENCES `kosquiz`.`GameRoom` (`idGameRoom`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
@@ -51,8 +78,6 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 -- Table `kosquiz`.`Score`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `kosquiz`.`Score` ;
-
 CREATE TABLE IF NOT EXISTS `kosquiz`.`Score` (
   `idScore` INT NOT NULL AUTO_INCREMENT,
   `Date` DATE NOT NULL,
@@ -71,8 +96,6 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 -- Table `kosquiz`.`Question`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `kosquiz`.`Question` ;
-
 CREATE TABLE IF NOT EXISTS `kosquiz`.`Question` (
   `idQuestion` INT NOT NULL AUTO_INCREMENT,
   `Category` VARCHAR(32) NOT NULL,
@@ -85,8 +108,6 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 -- Table `kosquiz`.`Answer`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `kosquiz`.`Answer` ;
-
 CREATE TABLE IF NOT EXISTS `kosquiz`.`Answer` (
   `idAnswer` INT NOT NULL AUTO_INCREMENT,
   `Answer` VARCHAR(1000) NOT NULL,
@@ -102,21 +123,8 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `kosquiz`.`Game`
--- -----------------------------------------------------
-DROP TABLE IF EXISTS `kosquiz`.`Game` ;
-
-CREATE TABLE IF NOT EXISTS `kosquiz`.`Game` (
-  `idGame` INT NOT NULL AUTO_INCREMENT,
-  PRIMARY KEY (`idGame`))
-ENGINE = InnoDB;
-
-
--- -----------------------------------------------------
 -- Table `kosquiz`.`GameLog`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `kosquiz`.`GameLog` ;
-
 CREATE TABLE IF NOT EXISTS `kosquiz`.`GameLog` (
   `idGameLog` INT NOT NULL AUTO_INCREMENT,
   `EventName` VARCHAR(200) NOT NULL,
