@@ -77,8 +77,8 @@ class Database{
 	public function getActiveUsers(){
 		$inactive = Date("Y-m-d H:i:s", strtotime("-30 seconds"));
 		
-		$sql = $this->db->prepare("SELECT * FROM accounts WHERE LastActivity = '$inactive'");
-		$sql->execute([$user]);
+		$sql = $this->db->prepare("SELECT * FROM accounts WHERE LastActivity > '$inactive'");
+		$sql->execute();
 		
 		$activeUsers = $sql->fetchAll();
 
@@ -101,7 +101,7 @@ class Database{
 	public function debug(){
 		$user = "Baum";
 		$pass = "123";
-		$rows = $this->insertUser($user,$pass);
+		$rows = $this->getActiveUsers();
 
 	}
 }
