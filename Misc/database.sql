@@ -26,27 +26,13 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `kosquiz`.`Game`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `kosquiz`.`Game` (
-  `idGame` INT NOT NULL AUTO_INCREMENT,
-  PRIMARY KEY (`idGame`))
-ENGINE = InnoDB;
-
-
--- -----------------------------------------------------
 -- Table `kosquiz`.`GameRoom`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `kosquiz`.`GameRoom` (
   `idGameRoom` INT NOT NULL AUTO_INCREMENT,
-  `Game_idGame` INT NOT NULL,
-  PRIMARY KEY (`idGameRoom`),
-  INDEX `fk_GameRoom_Game1_idx` (`Game_idGame` ASC),
-  CONSTRAINT `fk_GameRoom_Game1`
-    FOREIGN KEY (`Game_idGame`)
-    REFERENCES `kosquiz`.`Game` (`idGame`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
+  `isPrivate` TINYINT NOT NULL,
+  `Password` VARCHAR(45) NULL,
+  PRIMARY KEY (`idGameRoom`))
 ENGINE = InnoDB;
 
 
@@ -117,6 +103,22 @@ CREATE TABLE IF NOT EXISTS `kosquiz`.`Answer` (
   CONSTRAINT `fk_Answer_Question1`
     FOREIGN KEY (`Question_idQuestion`)
     REFERENCES `kosquiz`.`Question` (`idQuestion`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `kosquiz`.`Game`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `kosquiz`.`Game` (
+  `idGame` INT NOT NULL AUTO_INCREMENT,
+  `GameRoom_idGameRoom` INT NOT NULL,
+  PRIMARY KEY (`idGame`),
+  INDEX `fk_Game_GameRoom1_idx` (`GameRoom_idGameRoom` ASC),
+  CONSTRAINT `fk_Game_GameRoom1`
+    FOREIGN KEY (`GameRoom_idGameRoom`)
+    REFERENCES `kosquiz`.`GameRoom` (`idGameRoom`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
