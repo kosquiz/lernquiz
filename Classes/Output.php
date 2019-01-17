@@ -70,6 +70,9 @@ class Output{
 <button class="send" id="chatSubmit" type="button">Senden</button>
 <label><?php  ?></label>
 </div>
+<form action="index.php?site=logout">
+<button type="submit">Logout</button>
+</form>
 
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 	<script src="quiz.js"></script>
