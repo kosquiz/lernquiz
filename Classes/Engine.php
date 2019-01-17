@@ -93,6 +93,30 @@ class Engine{
 
     }
 
+    public function logoutAction(){
+        unset($_SESSION['user']);
+        unset($_SESSION['logged_in']);
+        header('Location: index.php');
+    }
+
+    public function joinGameAction(){
+        
+        if(!array_key_exists('logged_in', $_SESSION) || empty($_POST['roomID'])){
+            header('Location: index.php');
+            return;
+        }
+
+        //TODO if private, or passworded
+
+        $_SESSION['roomID'] = $_POST['roomID'];
+
+        header('Location: index.php');
+    }
+
+    /**
+     * AJAX Actions
+     */
+
     public function sendChatAjaxAction(){
 
         if($_SESSION['logged_in']==false){
@@ -121,5 +145,27 @@ class Engine{
         echo json_encode(['success'=>true, 'chat'=>$chat]);
 
     }
+
+    public function setUserActiveAjax(){
+
+        if(!array_key_exists('user', $_SESSION)){
+            echo json_encode(['success'=>false, 'error'=>'Nicht eingeloggt']);
+            return;
+        }
+        $this->db->setUserActivity($_SESSION['user']);
+    }
+
+    public function getUserActiveAjax(){
+        $users = $this->db->getActiveUsers();
+        $ret = [];
+
+        foreach($users as $u){
+            $ret[] = $u['Username'];
+        }
+
+        echo json_encode(['success'=>true, 'users'=>$ret]);
+    }
+
+
 
 }

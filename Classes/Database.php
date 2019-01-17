@@ -97,6 +97,57 @@ class Database{
 		return $currUser;
 
 	}
+
+	/**
+	 * insert new game
+	 */
+	public function newGameRoom($isPrivate, $pass){
+
+	}
+
+	/**
+	 * get all gamerooms, higher id first
+	 */
+	public function getGameRooms(){
+
+	}
+
+	/**
+	 * insert game log entry
+	 */
+	public function insertGameLog($idGame, $eventName, $eventVal1, $eventVal2){
+
+	}
+
+	/**
+	 * start a new game in game room
+	 */
+	public function insertGame($idGameRoom){
+
+	}
+
+	/**
+	 * get gameID for gameRoomID
+	 */
+	public function getCurrentGameID($idGameRoom){
+
+	}
+
+	/**
+	 * get 4 questions by category
+	 */
+	public function getQuestions($category){
+
+	}
+
+	/**
+	 * get 4 categories
+	 */
+	public function getCategories(){
+
+	}
+	
+
 	
 	public function debug(){
 		$user = "Baum";

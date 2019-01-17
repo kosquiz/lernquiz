@@ -1,0 +1,8 @@
+
+userJoined          userName
+userLeft            userName
+selectQuestion      userName    questionID
+answerdQuestion     answerID
+awardPoints         userName    points 
+messsageLog         message
+newTurn             userName
