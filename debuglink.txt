@@ -1,1 +1,1 @@
-http://localhost/lernquizgit/index.php?site=luisDebug
+http://localhost/lernquiz/index.php?site=luisDebug
