@@ -147,3 +147,14 @@ ENGINE = InnoDB;
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
+
+INSERT INTO Question(Category, Question, Difficulty) VALUES('AWP', 'DrUMM', 3);
+INSERT INTO Question(Category, Question, Difficulty) VALUES('VSY', 'DUrMM', 1);
+INSERT INTO Question(Category, Question, Difficulty) VALUES('BWP', 'DUMrM', 2);
+INSERT INTO Question(Category, Question, Difficulty) VALUES('ITS', 'DUMMr', 3);
+INSERT INTO Question(Category, Question, Difficulty) VALUES('ITS', 'DeUMM', 4);
+INSERT INTO Question(Category, Question, Difficulty) VALUES('BWP', 'DUeMM', 1);
+INSERT INTO Question(Category, Question, Difficulty) VALUES('BWP', 'DUMeM', 2);
+INSERT INTO Question(Category, Question, Difficulty) VALUES('AWP', 'DUMMe', 3);
+INSERT INTO Question(Category, Question, Difficulty) VALUES('AWP', 'DeUMM', 4);
+INSERT INTO Question(Category, Question, Difficulty) VALUES('AWP', 'DUeMM', 5);

@@ -121,15 +121,17 @@ class Database{
 	/**
 	 * insert game log entry
 	 */
-	public function insertGameLog($idGame, $eventName, $eventVal1, $eventVal2){
-
+	public function insertGameLog($eventName, $idGame, $eventVal1, $eventVal2){
+		$sql = $this->db->prepare("INSERT INTO gamelog(EventName, Date, Game_idGame, EventVal1, EventVal2) VALUES(?, NOW(), ?, ?, ?);");
+		$sql->execute([$eventName, $idGame, $eventVal1, $eventVal2]);
 	}
 
 	/**
 	 * start a new game in game room
 	 */
 	public function insertGame($idGameRoom){
-
+		$sql = $this->db->prepare("INSERT INTO gameroom() VALUES(?, NOW(), ?, ?, ?);");
+		$sql->execute([$idGameRoom]);
 	}
 
 	/**
@@ -143,13 +145,24 @@ class Database{
 	 * get 4 questions by category
 	 */
 	public function getQuestions($category){
+		$sql = $this->db->prepare("SELECT * FROM Question WHERE Category Like ? LIMIT 4");
+		$sql->execute([$category]);
+		
+		$questions = $sql->fetchAll();
 
+		return $questions;
 	}
 
 	/**
 	 * get 4 categories
 	 */
 	public function getCategories(){
+		$sql = $this->db->prepare("SELECT * FROM Question ORDER BY RAND() LIMIT 4;");
+		$sql->execute();
+		
+		$categorys = $sql->fetchAll();
+
+		return $categorys;
 
 	}
 	
@@ -158,7 +171,12 @@ class Database{
 	public function debug(){
 		$user = "Baum";
 		$pass = "123";
-		$rows = $this->getActiveUsers();
+		$category = "AWP";
+		$rows = $this->getCategories();
+		
+		echo '<pre>';
+		print_r($rows);
+		echo '</pre>';
 
 	}
 }
