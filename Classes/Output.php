@@ -66,7 +66,7 @@ class Output{
 
 <div class="chatbox">
 	<div class="written" id="chatBox"></div>
-	<div class="online"><div class="onlinePoint"></div></div>
+	<button class="online" placeholder="Online Spieler"><div class="onlinePoint"></div><div class="onlinePlayer"></div></button>
 <input class="write" id="chatInput" placeholder="Schreiben Sie eine Nachricht">
 <button class="send" id="chatSubmit" type="button">Senden</button>
 <label><?php  ?></label>
