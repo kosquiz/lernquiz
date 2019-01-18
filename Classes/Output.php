@@ -66,18 +66,19 @@ class Output{
 
 <div class="chatbox">
 	<div class="written" id="chatBox"></div>
+	<div class="online"><div class="onlinePoint"></div></div>
 <input class="write" id="chatInput" placeholder="Schreiben Sie eine Nachricht">
 <button class="send" id="chatSubmit" type="button">Senden</button>
 <label><?php  ?></label>
-</div>
-<form action="index.php?site=logout" method="post">
-<button type="submit">Logout</button>
+<form action="index.php?site=logout">
+<button class="Logout" type="submit">Logout</button>
 </form>
+</div>
+
+
 
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 	<script src="quiz.js"></script>
-
 <?php
 	}
-
 }

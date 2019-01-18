@@ -66,7 +66,7 @@ Gameboard
 }
 
 .onlinePoint{
-  border-radius: 100%;
+  border-radius: 50%;
   height: 10px;
   width: 10px;
   background-color: green;
@@ -78,4 +78,12 @@ Gameboard
   margin-left: 3.66667px;
   border: 2px solid;
   border-radius: 5px;
+}
+
+.Logout{
+  height: 50px;
+  width: 100%;
+  background-image: linear-gradient(to right, rgba(255,0,0,0), rgba(0, 8, 235, 1), rgba(255,0,0,0));
+  margin-top: 10%;
+  color: white;
 }
