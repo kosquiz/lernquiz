@@ -12,7 +12,6 @@ $(document).ready(function(){
         }
     })
 
-
     //REFRESH CHAT
     setInterval(function(){
         $.ajax({
@@ -26,8 +25,13 @@ $(document).ready(function(){
         })
     }, 500);
 
+   
+
 
 });
+
+//hide old messages
+ var siteOpened = new Date();
 
 function submitChat(){
     var $msg = $('#chatInput').val();
@@ -48,6 +52,8 @@ function buildChat(chat){
     chat.reverse();
     chat.forEach(function(line){
         var date = new Date(line['Time']);
+        if(date<siteOpened)
+            return;
         var showDate = date.getHours().pad() + ":" + date.getMinutes().pad();
         html += "[" + showDate + "] " + line['Accounts_Username'] + " | " + line['Message'] + "<br>";
     })
