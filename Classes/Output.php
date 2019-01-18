@@ -70,7 +70,7 @@ class Output{
 <button class="send" id="chatSubmit" type="button">Senden</button>
 <label><?php  ?></label>
 </div>
-<form action="index.php?site=logout">
+<form action="index.php?site=logout" method="post">
 <button type="submit">Logout</button>
 </form>
 

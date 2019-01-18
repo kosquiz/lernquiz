@@ -18,6 +18,10 @@ if(array_key_exists('site', $_GET))
 
 switch($site){
 	
+	case "logout":
+		$engine->logoutAction();
+		break;
+
 	case "login":
 		$engine->loginAction();
 		break;
@@ -51,6 +55,7 @@ switch($site){
 		break;
 
 	case "debug":
+		
 		$engine->debugAction();
 		break;
 

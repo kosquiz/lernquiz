@@ -26,7 +26,8 @@ class Engine{
     }
 
     public function debugAction(){
-        $this->output->gameBoardOutput(false);
+        $games = [['roomName'=>'Raum 1', 'id'=>1],['roomName'=>'Raum 2', 'id'=>2],['roomName'=>'Raum 3', 'id'=>3]];
+        $this->output->indexOutput($games);
     }
 
     public function registerPostAction(){
