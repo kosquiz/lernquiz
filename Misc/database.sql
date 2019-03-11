@@ -28,9 +28,17 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `kosquiz`.`GameRoom` (
   `idGameRoom` INT NOT NULL AUTO_INCREMENT,
+  `GameRoomName` VARCHAR(45) NULL,
   `isPrivate` TINYINT NOT NULL,
   `Password` VARCHAR(45) NULL,
-  PRIMARY KEY (`idGameRoom`))
+  `Accounts_Username` VARCHAR(16) NOT NULL,
+  PRIMARY KEY (`idGameRoom`),
+  INDEX `fk_GameRoom_Accounts1_idx` (`Accounts_Username` ASC),
+  CONSTRAINT `fk_GameRoom_Accounts1`
+    FOREIGN KEY (`Accounts_Username`)
+    REFERENCES `kosquiz`.`Accounts` (`Username`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
@@ -157,7 +165,6 @@ INSERT INTO Question(Category, Question, Difficulty) VALUES('BWP', 'DUMeM', 2);
 INSERT INTO Question(Category, Question, Difficulty) VALUES('AWP', 'DUMMe', 3);
 INSERT INTO Question(Category, Question, Difficulty) VALUES('AWP', 'DeUMM', 4);
 INSERT INTO Question(Category, Question, Difficulty) VALUES('AWP', 'DUeMM', 5);
-INSERT INTO gameroom(isPrivate, Password) VALUES(False,'');
 INSERT INTO chatmessage(Time, Message, Accounts_Username, GameRoom_idGameRoom) VALUES(Now(), 'Geile schlagen', 'test', 1);
 INSERT INTO chatmessage(Time, Message, Accounts_Username, GameRoom_idGameRoom) VALUES(Now(), 'toll', 'test', 1);
 INSERT INTO chatmessage(Time, Message, Accounts_Username, GameRoom_idGameRoom) VALUES(Now(), 'dumm', 'test', 1);
