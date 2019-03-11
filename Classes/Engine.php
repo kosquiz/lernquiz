@@ -22,7 +22,8 @@ class Engine{
         }
 
 
-        $this->output->gameBoardOutput();
+        //$this->output->gameBoardOutput();
+        $this->output->indexOutput();
     }
 
     public function debugAction(){
@@ -126,8 +127,9 @@ class Engine{
 
         $user = $_SESSION['user'];
         $msg = $_POST['msg'];
+        $roomID = $_POST['roomID'];
 
-        $this->db->insertChat($user, $msg);
+        $this->db->insertChat($user, $msg, $roomID);
 
         echo json_encode(['success'=>true]);
 
@@ -140,8 +142,9 @@ class Engine{
         }
 
         $user = $_SESSION['user'];
+        $roomID = $_POST['roomID'];
 
-        $chat = $this->db->getChat();
+        $chat = $this->db->getChat($roomID);
 
         echo json_encode(['success'=>true, 'chat'=>$chat]);
 
