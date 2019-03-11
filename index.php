@@ -18,6 +18,7 @@ if(array_key_exists('site', $_GET))
 
 switch($site){
 	
+	//LOGIN AND REGISTER
 	case "logout":
 		$engine->logoutAction();
 		break;
@@ -38,6 +39,7 @@ switch($site){
 		$engine->registerPostAction();
 		break;
 
+	//CHAT
 	case "getChat":
 		$engine->getChatAjaxAction();
 		break;
@@ -46,6 +48,19 @@ switch($site){
 		$engine->sendChatAjaxAction();
 		break;
 	
+	//ROOMS
+	case "createRoom":
+		$engine->createGameRoomAction();
+		break;
+
+	case "joinRoom":
+		$engine->joinGameAction();
+		break;
+
+	case "leaveRoom":
+		$engine->leaveGameRoomAction();
+		break;
+
 	case "reset":
 		$db->dropAndCreate();
 		break;

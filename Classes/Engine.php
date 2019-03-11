@@ -22,8 +22,21 @@ class Engine{
         }
 
 
-        //$this->output->gameBoardOutput();
-        $this->output->indexOutput([]);
+        if(array_key_exists('roomID', $_SESSION)){
+            $this->output->gameBoardOutput();
+            return;
+        }
+        else{
+            /*
+                'rooms' => [
+                    [idGameRoom, isPrivate, Password],
+                ]
+            */
+            $vars = ['rooms'=>$this->db->getGameRooms()];
+            $this->output->indexOutput($vars);
+            return;
+        }
+
     }
 
     public function debugAction(){
@@ -101,6 +114,24 @@ class Engine{
         header('Location: index.php');
     }
 
+
+    public function createGameRoomAction(){
+
+        if(!array_key_exists('logged_in', $_SESSION)){
+            header('Location: index.php');
+            return;
+        }
+
+
+        $private = $_POST['private'];
+        $password = $_POST['password'];
+        
+        //TODO RETURN NEW GAMEROOM ID
+        $gameRoomID = $this->db->newGameRoom($private, $password)
+        //$_SESSION['roomID'] = $gameRoomID;
+        header('Location: index.php');
+    }
+
     public function joinGameAction(){
         
         if(!array_key_exists('logged_in', $_SESSION) || empty($_POST['roomID'])){
@@ -112,6 +143,11 @@ class Engine{
 
         $_SESSION['roomID'] = $_POST['roomID'];
 
+        header('Location: index.php');
+    }
+
+    public function leaveGameRoomAction(){
+        unset($_SESSION['roomID']);
         header('Location: index.php');
     }
 
