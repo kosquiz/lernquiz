@@ -23,7 +23,7 @@ class Engine{
 
 
         //$this->output->gameBoardOutput();
-        $this->output->indexOutput();
+        $this->output->indexOutput([]);
     }
 
     public function debugAction(){
