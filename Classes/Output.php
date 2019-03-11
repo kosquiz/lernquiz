@@ -9,20 +9,33 @@ class Output{
 	}
 
 	public function indexOutput($variables){
-
+		echo "<pre>";
+		print_r($variables);
+		echo "</pre>";
 		?>
-
-
-
-
+<h2>Räume</h2>
+<form action="index.php?site=createRoom">
+<button type="submit">Raum erstellen</button>
+</form>
 		<?php
+		foreach($variable as $room){?>
+			<div class="room">
+			<p>Ersteller: <?php echo $room['roomCreater'] ?>
+			<P>ID: <?php echo $room['id'];?></p>
+				<form action="index.php?site=joinRoom" method="post">
+					<input name="roomID" type="hidden" value="<?php echo $room['id'];?>"></input>
+				<button type="submit" style="float: right; margin-right: 20px">Beitreten</button>
+			</form>
+			</div>
+	<?php}
 
-		$this->footerOutput();
+
+		//$this->footerOutput();
 	}
 
-	public function footerOutput(){
+	/*public function footerOutput(){
 
-	}
+	}*/
 
 	public function loginOutput($variables){
 		?>
@@ -39,7 +52,6 @@ class Output{
 		</div>
 		<?php
 	}
-
 
 	public function registerOutput($error){
 ?>
@@ -64,9 +76,10 @@ class Output{
 
 <link rel="stylesheet" href="Style.css">
 
+<!-- start chatbox-->
 <div class="chatbox">
 	<div class="written" id="chatBox"></div>
-	<button class="online" placeholder="Online Spieler"><div class="onlinePoint"></div><div class="onlinePlayer"></div></button>
+	<button class="online"><div class="onlinePoint"></div><div class="onlinePlayer"></div></button>
 <input class="write" id="chatInput" placeholder="Schreiben Sie eine Nachricht">
 <button class="send" id="chatSubmit" type="button">Senden</button>
 <label><?php  ?></label>
@@ -74,6 +87,7 @@ class Output{
 <button class="Logout" type="submit">Logout</button>
 </form>
 </div>
+<!-- end chatbox-->
 
 
 
