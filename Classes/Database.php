@@ -102,7 +102,7 @@ class Database{
 	 * insert new game
 	 */
 	public function newGameRoom($isPrivate, $pass){
-		$sql = $this->db->prepare("INSERT INTO GameRoom isPrivate, Password VALUES(?, ?)");
+		$sql = $this->db->prepare("INSERT INTO GameRoom (isPrivate, Password) VALUES(?, ?)");
 		$sql->execute([$isPrivate,$pass]);
 	}
 
@@ -113,7 +113,7 @@ class Database{
 		$sql = $this->db->prepare("SELECT * FROM GameRoom ORDER BY idGameRoom DESC");
 		$sql->execute();
 		
-		$allGameRooms = $sql->fetch();
+		$allGameRooms = $sql->fetchAll();
 		
 		return $allGameRooms;
 	}

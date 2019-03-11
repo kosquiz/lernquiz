@@ -12,30 +12,32 @@ class Output{
 		echo "<pre>";
 		print_r($variables);
 		echo "</pre>";
+		
 		?>
 <h2>Räume</h2>
-<form action="index.php?site=createRoom">
+<form action="index.php?site=createRoom" method="post">
 <button type="submit">Raum erstellen</button>
 </form>
+		
 		<?php
-		foreach($variable as $room){?>
+		$rooms = $variables['rooms'];
+		
+		foreach($variables['rooms'] as $room):?>
 			<div class="room">
-			<p>Ersteller: <?php echo $room['roomCreater'] ?>
-			<P>ID: <?php echo $room['id'];?></p>
+			<p>Ersteller: <?php echo $room['idGameRoom']; ?>
+			<P>ID: <?php echo $room['idGameRoom'];?></p>
 				<form action="index.php?site=joinRoom" method="post">
-					<input name="roomID" type="hidden" value="<?php echo $room['id'];?>"></input>
+					<input name="roomID" type="hidden" value="<?php echo $room['idGameRoom'];?>"></input>
 				<button type="submit" style="float: right; margin-right: 20px">Beitreten</button>
 			</form>
 			</div>
-	<?php}
+	<?php
+		endforeach;
 
 
-		//$this->footerOutput();
+			
+
 	}
-
-	/*public function footerOutput(){
-
-	}*/
 
 	public function loginOutput($variables){
 		?>

@@ -125,9 +125,11 @@ class Engine{
 
         $private = $_POST['private'];
         $password = $_POST['password'];
+        $private = 0;
+        $password = "";
         
         //TODO RETURN NEW GAMEROOM ID
-        $gameRoomID = $this->db->newGameRoom($private, $password)
+        $gameRoomID = $this->db->newGameRoom($private, $password);
         //$_SESSION['roomID'] = $gameRoomID;
         header('Location: index.php');
     }
