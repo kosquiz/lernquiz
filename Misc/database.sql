@@ -1,5 +1,3 @@
--- MySQL Workbench Forward Engineering
-
 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0;
 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='TRADITIONAL,ALLOW_INVALID_DATES';
@@ -148,6 +146,7 @@ SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
 
+
 INSERT INTO Question(Category, Question, Difficulty) VALUES('AWP', 'DrUMM', 3);
 INSERT INTO Question(Category, Question, Difficulty) VALUES('VSY', 'DUrMM', 1);
 INSERT INTO Question(Category, Question, Difficulty) VALUES('BWP', 'DUMrM', 2);
@@ -158,3 +157,9 @@ INSERT INTO Question(Category, Question, Difficulty) VALUES('BWP', 'DUMeM', 2);
 INSERT INTO Question(Category, Question, Difficulty) VALUES('AWP', 'DUMMe', 3);
 INSERT INTO Question(Category, Question, Difficulty) VALUES('AWP', 'DeUMM', 4);
 INSERT INTO Question(Category, Question, Difficulty) VALUES('AWP', 'DUeMM', 5);
+INSERT INTO gameroom(isPrivate, Password) VALUES(False,'');
+INSERT INTO chatmessage(Time, Message, Accounts_Username, GameRoom_idGameRoom) VALUES(Now(), 'Geile schlagen', 'test', 1);
+INSERT INTO chatmessage(Time, Message, Accounts_Username, GameRoom_idGameRoom) VALUES(Now(), 'toll', 'test', 1);
+INSERT INTO chatmessage(Time, Message, Accounts_Username, GameRoom_idGameRoom) VALUES(Now(), 'dumm', 'test', 1);
+INSERT INTO chatmessage(Time, Message, Accounts_Username, GameRoom_idGameRoom) VALUES(Now(), 'spitze', 'test', 1);
+

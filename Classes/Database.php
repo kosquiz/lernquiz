@@ -20,19 +20,19 @@ class Database{
 	/**
 	 * insert chat message by user
 	 */
-	public function insertChat($user, $msg){
-		$sql = $this->db->prepare("INSERT INTO chatmessage(Time, Message, Accounts_Username) VALUES(NOW(), ?, ?);");
-		$sql->execute([$msg,$user]);
+	public function insertChat($msg, $user, $gameRoomID){
+		$sql = $this->db->prepare("INSERT INTO chatmessage(Time, Message, Accounts_Username, GameRoom_idGameRoom) VALUES(NOW(), ?, ?, ?);");
+		$sql->execute([$msg,$user,$gameRoomID]);
 		
 	}
 
 	/**
 	 * get last 50 chat messages
 	 */
-	public function getChat(){
+	public function getChat($gameRoomID){
 		
-		$sql = $this->db->prepare("SELECT * FROM chatmessage ORDER BY idChat DESC LIMIT 50;");
-		$sql->execute();
+		$sql = $this->db->prepare("SELECT * FROM chatmessage WHERE GameRoom_idGameRoom = ? ORDER BY idChat DESC LIMIT 50;");
+		$sql->execute([$gameRoomID]);
 
 		$newestMsgs = $sql->fetchAll();
 
@@ -103,7 +103,7 @@ class Database{
 	 */
 	public function newGameRoom($isPrivate, $pass){
 		$sql = $this->db->prepare("INSERT INTO GameRoom isPrivate, Password VALUES(?, ?)");
-		$sql->execute([$user,$pass]);
+		$sql->execute([$isPrivate,$pass]);
 	}
 
 	/**
@@ -169,10 +169,12 @@ class Database{
 
 	
 	public function debug(){
-		$user = "Baum";
+		$user = "test";
 		$pass = "123";
 		$category = "AWP";
-		$rows = $this->getCategories();
+        $msg = "Ich bin einge geile Schlange";
+        $gameRoomID = "1";
+		$rows = $this->insertChat($msg, $user, $gameRoomID);
 		
 		echo '<pre>';
 		print_r($rows);
