@@ -12,20 +12,21 @@ class Output{
 		echo "<pre>";
 		print_r($variables);
 		echo "</pre>";
-		
+
 		?>
 <h2>Räume</h2>
 <form action="index.php?site=createRoom" method="post">
 <button type="submit">Raum erstellen</button>
 </form>
-		
+
 		<?php
 		$rooms = $variables['rooms'];
-		
+
 		foreach($variables['rooms'] as $room):?>
 			<div class="room">
 			<p>Ersteller: <?php echo $room['idGameRoom']; ?>
 			<P>ID: <?php echo $room['idGameRoom'];?></p>
+				<P>ID: <?php echo $room['idGameRoom'];?></p>
 				<form action="index.php?site=joinRoom" method="post">
 					<input name="roomID" type="hidden" value="<?php echo $room['idGameRoom'];?>"></input>
 				<button type="submit" style="float: right; margin-right: 20px">Beitreten</button>
@@ -35,7 +36,7 @@ class Output{
 		endforeach;
 
 
-			
+
 
 	}
 
@@ -85,8 +86,11 @@ class Output{
 <input class="write" id="chatInput" placeholder="Schreiben Sie eine Nachricht">
 <button class="send" id="chatSubmit" type="button">Senden</button>
 <label><?php  ?></label>
-<form action="index.php?site=logout">
-<button class="Logout" type="submit">Logout</button>
+<form>
+<button class="Logout" type="submit" onclick="index.php?site=logout">Logout</button>
+</form>
+<form>
+<button class= type="submit" onclick="index.php?site=leaveRoom">Raum Verlassen</button>
 </form>
 </div>
 <!-- end chatbox-->
