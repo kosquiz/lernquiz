@@ -20,12 +20,12 @@ Gameboard
 ============*/
 
 .chatbox{
-  height: 85%;
+  height: 83%;
   width: 10%;
   min-width: 283px;
   border: 2px solid;
   border-radius: 5px;
-  margin-top: 30px;
+  margin-top: 20px;
   margin-right: 30px;
   float: right;
 }
@@ -86,7 +86,7 @@ Gameboard
 .Logout{
   height: 50px;
   width: 100%;
-  margin-top: 10%;
+  margin-top: 10px;
 }
 
 /*=============
