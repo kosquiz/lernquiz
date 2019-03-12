@@ -17,6 +17,8 @@ class Output{
 <h2>Räume</h2>
 <form action="index.php?site=createRoom" method="post">
 <button type="submit">Raum erstellen</button>
+<input type="text" name="roomName" placeholder="Geben Sie einen Namen für den Raum ein" maxlength="45" style="width: 16rem"></input>
+<p>(max. 45 Zeichen)</p>
 </form>
 
 		<?php
@@ -80,7 +82,7 @@ class Output{
 <link rel="stylesheet" href="Style.css">
 <!-- Start Header -->
 <div>
-	
+
 <!-- start chatbox-->
 <div class="chatbox">
 	<div class="written" id="chatBox"></div>
