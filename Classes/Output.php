@@ -90,10 +90,7 @@ class Output{
 <input class="write" id="chatInput" placeholder="Schreiben Sie eine Nachricht">
 <button class="send" id="chatSubmit" type="button">Senden</button>
 <label><?php  ?></label>
-<form>
 <button class="Logout" type="submit" onclick="window.location.href='index.php?site=logout'">Logout</button>
-</form>
-
 <button type="submit" onclick="window.location.href='index.php?site=leaveRoom'">Raum Verlassen</button>
 
 </div>
