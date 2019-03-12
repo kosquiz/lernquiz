@@ -36,10 +36,9 @@ class Output{
 			</div>
 	<?php
 		endforeach;
-
-
-
-
+?>
+<button type="submit" onclick="window.location.href='index.php?site=logout'">Logout</button>
+<?php
 	}
 
 	public function loginOutput($variables){
@@ -91,7 +90,7 @@ class Output{
 <button class="send" id="chatSubmit" type="button">Senden</button>
 <label><?php  ?></label>
 <button class="Logout" type="submit" onclick="window.location.href='index.php?site=logout'">Logout</button>
-<button type="submit" onclick="window.location.href='index.php?site=leaveRoom'">Raum Verlassen</button>
+<button class="Logout" type="submit" onclick="window.location.href='index.php?site=leaveRoom'">Raum Verlassen</button>
 
 </div>
 <!-- end chatbox-->
