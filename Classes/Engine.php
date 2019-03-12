@@ -124,14 +124,14 @@ class Engine{
 
 
         //TODO NAME AND CREATOR
-        $private = $_POST['private'];
-        $password = $_POST['password'];
+        //$private = $_POST['private'];
+        //$password = $_POST['password'];
         $roomName = $_POST['roomName'];
         $private = 0;
         $password = "";
         
         //TODO RETURN NEW GAMEROOM ID
-        $gameRoomID = $this->db->newGameRoom("testname", $private, $password, $_SESSION['user']);
+        $gameRoomID = $this->db->newGameRoom($roomName, 1, $private, $password, $_SESSION['user']);
         $_SESSION['roomID'] = $gameRoomID;
         header('Location: index.php');
     }
@@ -156,6 +156,14 @@ class Engine{
     }
 
     /**
+     * Helper Functions
+     */
+
+    private function checkActiveGames(){
+
+    }
+
+    /**
      * AJAX Actions
      */
 
@@ -169,9 +177,9 @@ class Engine{
         $msg = $_POST['msg'];
         $roomID = $_SESSION['roomID'];
 
-        $this->db->insertChat($user, $msg, $roomID);
+        $this->db->insertChat($msg, $user, $roomID);
 
-        echo json_encode(['success'=>true]);
+        echo json_encode(['success'=>true, 'vars'=>[$user, $msg, $roomID]]);
 
     }
 

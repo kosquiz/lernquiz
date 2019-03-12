@@ -42,7 +42,7 @@ function submitChat(){
         data: $data,
         url: "index.php?site=sendChat",
         success: function(res){
-            console.log(res, "success");
+            console.log(JSON.parse(res));
         }
     })
 }
