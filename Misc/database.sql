@@ -29,6 +29,7 @@ ENGINE = InnoDB;
 CREATE TABLE IF NOT EXISTS `kosquiz`.`GameRoom` (
   `idGameRoom` INT NOT NULL AUTO_INCREMENT,
   `GameRoomName` VARCHAR(45) NULL,
+  `isActive` TINYINT NULL,
   `isPrivate` TINYINT NOT NULL,
   `Password` VARCHAR(45) NULL,
   `Accounts_Username` VARCHAR(16) NOT NULL,

@@ -101,9 +101,9 @@ class Database{
 	/**
 	 * insert new game
 	 */
-	public function newGameRoom($roomname, $isPrivate, $pass, $creator){
-		$sql = $this->db->prepare("INSERT INTO GameRoom (GameRoomName, isPrivate, Password, Accounts_Username) VALUES(?, ?, ?, ?)");
-		$sql->execute([$roomname,$isPrivate,$pass,$creator]);
+	public function newGameRoom($roomname, $isActive, $isPrivate, $pass, $creator){
+		$sql = $this->db->prepare("INSERT INTO GameRoom (GameRoomName, isActive, isPrivate, Password, Accounts_Username) VALUES(?, ?, ?, ?, ?)");
+		$sql->execute([$roomname,$isActive,$isPrivate,$pass,$creator]);
 		return $this->db->lastInsertId();
 	}
 
@@ -118,6 +118,26 @@ class Database{
 		
 		return $allGameRooms;
 	}
+
+    /**
+     * change gamroom to active
+     */
+    public function activateGameRoom($gameRoom){
+
+        $sql = $this->db->prepare("UPDATE gameroom SET isActive = True WHERE idGameRoom = ?;");
+        $sql->execute([$gameRoom]);
+
+    }
+
+    /**
+     * change gamroom to active
+     */
+    public function deactivateGameRoom($gameRoom){
+
+        $sql = $this->db->prepare("UPDATE gameroom SET isActive = False WHERE idGameRoom = ?;");
+        $sql->execute([$gameRoom]);
+
+    }
 
 	/**
 	 * insert game log entry
