@@ -13,17 +13,6 @@ CREATE SCHEMA IF NOT EXISTS `kosquiz` DEFAULT CHARACTER SET utf8 ;
 USE `kosquiz` ;
 
 -- -----------------------------------------------------
--- Table `kosquiz`.`Accounts`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `kosquiz`.`Accounts` (
-  `Username` VARCHAR(16) NULL,
-  `Password` VARCHAR(2000) NOT NULL,
-  `LastActivity` DATETIME NOT NULL,
-  PRIMARY KEY (`Username`))
-ENGINE = InnoDB;
-
-
--- -----------------------------------------------------
 -- Table `kosquiz`.`GameRoom`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `kosquiz`.`GameRoom` (
@@ -38,6 +27,24 @@ CREATE TABLE IF NOT EXISTS `kosquiz`.`GameRoom` (
   CONSTRAINT `fk_GameRoom_Accounts1`
     FOREIGN KEY (`Accounts_Username`)
     REFERENCES `kosquiz`.`Accounts` (`Username`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `kosquiz`.`Accounts`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `kosquiz`.`Accounts` (
+  `Username` VARCHAR(16) NULL,
+  `Password` VARCHAR(2000) NOT NULL,
+  `LastActivity` DATETIME NOT NULL,
+  `GameRoom_idGameRoom` INT NULL DEFAULT NULL,
+  PRIMARY KEY (`Username`),
+  INDEX `fk_Accounts_GameRoom1_idx` (`GameRoom_idGameRoom` ASC),
+  CONSTRAINT `fk_Accounts_GameRoom1`
+    FOREIGN KEY (`GameRoom_idGameRoom`)
+    REFERENCES `kosquiz`.`GameRoom` (`idGameRoom`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;

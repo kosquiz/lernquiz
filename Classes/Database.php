@@ -39,6 +39,20 @@ class Database{
 		return $newestMsgs;
 
 	}
+
+    /**
+     * get all Users
+     */
+    public function getAllUsers(){
+
+        $sql = $this->db->prepare("SELECT * FROM Accounts ORDER BY Username DESC");
+        $sql->execute();
+
+        $allGameRooms = $sql->fetchAll();
+
+        return $allGameRooms;
+
+    }
 	
 	/**
 	 * insert 1 user with pass
@@ -85,6 +99,16 @@ class Database{
 		return $activeUsers;
 	}
 
+    /**
+     * change gamroom of user
+     */
+    public function activateGameRoom($gameRoom,$user){
+
+        $sql = $this->db->prepare("UPDATE accounts SET GameRoom_idGameRoom = ? WHERE Username = ?;");
+        $sql->execute([$gameRoom]);
+
+    }
+
 	/**
 	 * select 1 user with pass
 	 */
@@ -130,7 +154,7 @@ class Database{
     }
 
     /**
-     * change gamroom to active
+     * change gamroom to inActive
      */
     public function deactivateGameRoom($gameRoom){
 
