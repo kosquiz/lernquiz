@@ -103,7 +103,7 @@ class Database{
 	 */
 	public function newGameRoom($roomname, $isPrivate, $pass, $creator){
 		$sql = $this->db->prepare("INSERT INTO GameRoom (GameRoomName, isPrivate, Password, Account_Username) VALUES(?, ?, ?, ?)");
-		$sql->execute([$isPrivate,$pass]);
+		$sql->execute([$roomname,$isPrivate,$pass,$creator]);
 	}
 
 	/**
