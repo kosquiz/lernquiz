@@ -86,9 +86,7 @@ Gameboard
 .Logout{
   height: 50px;
   width: 100%;
-  background-image: linear-gradient(to right, rgba(255,0,0,0), rgba(0, 8, 235, 1), rgba(255,0,0,0));
   margin-top: 10%;
-  color: white;
 }
 
 /*=============
@@ -96,7 +94,10 @@ Index
 ============*/
 
 .room{
-  margin-right: auto;
-  margin-left: auto;
-  width: 70%;
+  height: 10rem;
+  width: 30%;
+  margin-right: 20px;
+  margin-bottom: 2rem;
+  border: 2px solid;
+  padding: 10px;
 }
