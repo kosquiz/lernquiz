@@ -14,18 +14,19 @@ class Output{
 		echo "</pre>";
 
 		?>
+		<link rel="stylesheet" href="Style.css">
 <h2>Räume</h2>
 <form action="index.php?site=createRoom" method="post">
 <button type="submit">Raum erstellen</button>
 </form>
 
 		<?php
-		$rooms = $variables['rooms'];
+		$room = $variables['rooms'];
 
 		foreach($variables['rooms'] as $room):?>
 			<div class="room">
 			<p>Ersteller: <?php echo $room['idGameRoom']; ?>
-			<P>ID: <?php echo $room['idGameRoom'];?></p>
+			<P>Raummname: <?php echo $room['idGameRoom'];?></p>
 				<P>ID: <?php echo $room['idGameRoom'];?></p>
 				<form action="index.php?site=joinRoom" method="post">
 					<input name="roomID" type="hidden" value="<?php echo $room['idGameRoom'];?>"></input>
