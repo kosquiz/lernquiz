@@ -9,10 +9,9 @@ class Output{
 	}
 
 	public function indexOutput($variables){
-		echo "<pre>";
+		/*echo "<pre>";
 		print_r($variables);
-		echo "</pre>";
-
+		echo "</pre>";*/
 		?>
 		<link rel="stylesheet" href="Style.css">
 <h2>Räume</h2>
@@ -21,7 +20,7 @@ class Output{
 </form>
 
 		<?php
-		$room = $variables['rooms'];
+		$rooms = $variables['rooms'];
 
 		foreach($variables['rooms'] as $room):?>
 			<div class="room">
@@ -79,7 +78,9 @@ class Output{
 ?>
 
 <link rel="stylesheet" href="Style.css">
-
+<!-- Start Header -->
+<div>
+	
 <!-- start chatbox-->
 <div class="chatbox">
 	<div class="written" id="chatBox"></div>
@@ -88,11 +89,11 @@ class Output{
 <button class="send" id="chatSubmit" type="button">Senden</button>
 <label><?php  ?></label>
 <form>
-<button class="Logout" type="submit" onclick="index.php?site=logout">Logout</button>
+<button class="Logout" type="submit" onclick="window.location.href='index.php?site=logout'">Logout</button>
 </form>
-<form>
-<button class= type="submit" onclick="index.php?site=leaveRoom">Raum Verlassen</button>
-</form>
+
+<button type="submit" onclick="window.location.href='index.php?site=leaveRoom'">Raum Verlassen</button>
+
 </div>
 <!-- end chatbox-->
 
