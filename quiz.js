@@ -31,7 +31,7 @@ $(document).ready(function(){
 });
 
 //hide old messages
- var siteOpened = new Date();
+var siteOpened = new Date();
 
 function submitChat(){
     var $msg = $('#chatInput').val();

@@ -102,8 +102,9 @@ class Database{
 	 * insert new game
 	 */
 	public function newGameRoom($roomname, $isPrivate, $pass, $creator){
-		$sql = $this->db->prepare("INSERT INTO GameRoom (GameRoomName, isPrivate, Password, Account_Username) VALUES(?, ?, ?, ?)");
+		$sql = $this->db->prepare("INSERT INTO GameRoom (GameRoomName, isPrivate, Password, Accounts_Username) VALUES(?, ?, ?, ?)");
 		$sql->execute([$roomname,$isPrivate,$pass,$creator]);
+		return $this->db->lastInsertId();
 	}
 
 	/**

@@ -123,14 +123,16 @@ class Engine{
         }
 
 
+        //TODO NAME AND CREATOR
         $private = $_POST['private'];
         $password = $_POST['password'];
+        $roomName = $_POST['roomName'];
         $private = 0;
         $password = "";
         
         //TODO RETURN NEW GAMEROOM ID
-        $gameRoomID = $this->db->newGameRoom($private, $password);
-        //$_SESSION['roomID'] = $gameRoomID;
+        $gameRoomID = $this->db->newGameRoom("testname", $private, $password, $_SESSION['user']);
+        $_SESSION['roomID'] = $gameRoomID;
         header('Location: index.php');
     }
 
@@ -165,7 +167,7 @@ class Engine{
 
         $user = $_SESSION['user'];
         $msg = $_POST['msg'];
-        $roomID = $_POST['roomID'];
+        $roomID = $_SESSION['roomID'];
 
         $this->db->insertChat($user, $msg, $roomID);
 
@@ -180,7 +182,7 @@ class Engine{
         }
 
         $user = $_SESSION['user'];
-        $roomID = $_POST['roomID'];
+        $roomID = $_SESSION['roomID'];
 
         $chat = $this->db->getChat($roomID);
 
