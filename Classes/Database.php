@@ -58,7 +58,7 @@ class Database{
 	 * insert 1 user with pass
 	 */
 	public function insertUser($user,$pass){
-		$sql = $this->db->prepare("INSERT INTO accounts VALUES(?, ?, 0)");
+		$sql = $this->db->prepare("INSERT INTO accounts  VALUES(?, ?, 0, NULL)");
 		$sql->execute([$user,$pass]);
 		
 	}
