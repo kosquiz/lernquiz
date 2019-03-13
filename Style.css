@@ -107,6 +107,16 @@ Gameboard
   margin-left: 3rem;
 }
 
+.question{
+  width: 20%;
+  height: 15%;
+  margin-top: 2.5%;
+  margin-bottom: 2.5%;
+  margin-right: 2.5%;
+  margin-left: 2.5%;
+  border: 2px solid blue;
+}
+
 /*=============
 Index
 ============*/
