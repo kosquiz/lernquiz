@@ -22,11 +22,13 @@ class Engine{
         }
 
 
+        
         if(array_key_exists('roomID', $_SESSION)){
             $this->output->gameBoardOutput();
             return;
         }
         else{
+            $this->checkActiveGames();
             /*
                 'rooms' => [
                     [idGameRoom, isPrivate, Password],
@@ -130,7 +132,6 @@ class Engine{
         $private = 0;
         $password = "";
         
-        //TODO RETURN NEW GAMEROOM ID
         $gameRoomID = $this->db->newGameRoom($roomName, 1, $private, $password, $_SESSION['user']);
         $_SESSION['roomID'] = $gameRoomID;
         $this->db->setGameRoom($gameRoomID, $_SESSION['user']);
@@ -162,7 +163,19 @@ class Engine{
      */
 
     private function checkActiveGames(){
+        $rooms = $this->db->getGameRooms();
+        $users = $this->db->getActiveUsers();
 
+       
+        foreach($rooms as $room){
+            $active = false;
+            foreach($users as $user){
+                if($user['GameRoom_idGameRoom'] == $room['idGameRoom'])
+                    $active = true;
+            }
+            if(!$active)
+                $this->db->deactivateGameRoom($room['idGameRoom']);
+        }
     }
 
     /**
@@ -200,13 +213,14 @@ class Engine{
 
     }
 
-    public function setUserActiveAjax(){
+    public function setUserActiveAjaxAction(){
 
         if(!array_key_exists('user', $_SESSION)){
             echo json_encode(['success'=>false, 'error'=>'Nicht eingeloggt']);
             return;
         }
         $this->db->setUserActivity($_SESSION['user']);
+        echo "user set active";
     }
 
     public function getUserActiveAjax(){

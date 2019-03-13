@@ -22,9 +22,22 @@ $(document).ready(function(){
                 var html = buildChat(res['chat']);
                 $('#chatBox').empty().html(html);
             }
-        })
+        });
+
+        $.ajax({
+            type: "GET",
+            url: "index.php?site=setActive",
+            success: function(res){
+                console.log(res)
+            }
+        });
+
     }, 500);
 
+
+    //Set user active
+
+    
    
 
 

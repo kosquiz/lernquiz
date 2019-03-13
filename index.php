@@ -48,6 +48,10 @@ switch($site){
 		$engine->sendChatAjaxAction();
 		break;
 	
+	case "setActive":
+		$engine->setUserActiveAjaxAction();
+		break;
+
 	//ROOMS
 	case "createRoom":
 		$engine->createGameRoomAction();
