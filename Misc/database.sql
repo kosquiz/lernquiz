@@ -162,18 +162,65 @@ SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
 
-
+-- -----------------------------------------------------
+-- Question Rotations 1
+-- -----------------------------------------------------
+INSERT INTO Question(Category, Question, Difficulty) VALUES('AWP', 'DrUMM', 1);
+INSERT INTO Question(Category, Question, Difficulty) VALUES('AWP', 'DrUMM', 2);
 INSERT INTO Question(Category, Question, Difficulty) VALUES('AWP', 'DrUMM', 3);
-INSERT INTO Question(Category, Question, Difficulty) VALUES('VSY', 'DUrMM', 1);
-INSERT INTO Question(Category, Question, Difficulty) VALUES('BWP', 'DUMrM', 2);
-INSERT INTO Question(Category, Question, Difficulty) VALUES('ITS', 'DUMMr', 3);
-INSERT INTO Question(Category, Question, Difficulty) VALUES('ITS', 'DeUMM', 4);
-INSERT INTO Question(Category, Question, Difficulty) VALUES('BWP', 'DUeMM', 1);
-INSERT INTO Question(Category, Question, Difficulty) VALUES('BWP', 'DUMeM', 2);
-INSERT INTO Question(Category, Question, Difficulty) VALUES('AWP', 'DUMMe', 3);
-INSERT INTO Question(Category, Question, Difficulty) VALUES('AWP', 'DeUMM', 4);
-INSERT INTO Question(Category, Question, Difficulty) VALUES('AWP', 'DUeMM', 5);
-INSERT INTO chatmessage(Time, Message, Accounts_Username, GameRoom_idGameRoom) VALUES(Now(), 'Geile schlagen', 'test', 1);
+INSERT INTO Question(Category, Question, Difficulty) VALUES('AWP', 'DrUMM', 4);
+INSERT INTO Question(Category, Question, Difficulty) VALUES('AWP', 'DrUMM', 5);
+INSERT INTO Question(Category, Question, Difficulty) VALUES('BWP', 'DrUMM', 1);
+INSERT INTO Question(Category, Question, Difficulty) VALUES('BWP', 'DrUMM', 2);
+INSERT INTO Question(Category, Question, Difficulty) VALUES('BWP', 'DrUMM', 3);
+INSERT INTO Question(Category, Question, Difficulty) VALUES('BWP', 'DrUMM', 4);
+INSERT INTO Question(Category, Question, Difficulty) VALUES('BWP', 'DrUMM', 5);
+INSERT INTO Question(Category, Question, Difficulty) VALUES('VSY', 'Aus wievielen Bit besteht eine IPv4 Adresse?', 1);
+INSERT INTO Question(Category, Question, Difficulty) VALUES('VSY', 'Welches der folgenden Subnetze ist nicht richtig?', 2);
+INSERT INTO Question(Category, Question, Difficulty) VALUES('VSY', 'Wie groß ist eine IPv6 Adresse?', 3);
+INSERT INTO Question(Category, Question, Difficulty) VALUES('VSY', 'DrUMM', 4);
+INSERT INTO Question(Category, Question, Difficulty) VALUES('VSY', 'DrUMM', 5);
+INSERT INTO Question(Category, Question, Difficulty) VALUES('ITS', 'DrUMM', 1);
+INSERT INTO Question(Category, Question, Difficulty) VALUES('ITS', 'DrUMM', 2);
+INSERT INTO Question(Category, Question, Difficulty) VALUES('ITS', 'DrUMM', 3);
+INSERT INTO Question(Category, Question, Difficulty) VALUES('ITS', 'DrUMM', 4);
+INSERT INTO Question(Category, Question, Difficulty) VALUES('ITS', 'DrUMM', 5);
+INSERT INTO Question(Category, Question, Difficulty) VALUES('SOZI', 'Wem ist der Abgeordnete nicht untergeordnet?', 1);
+INSERT INTO Question(Category, Question, Difficulty) VALUES('SOZI', 'Wie oft wird der Bundestag (i.d.R) gewählt?', 2);
+INSERT INTO Question(Category, Question, Difficulty) VALUES('SOZI', 'Wie heisst das Wahlrecht bei dem nur der Wahlkreisgewinner einen Sitzim Parlament bekommt und alle anderen "unter den Tisch" fallen?"', 3);
+INSERT INTO Question(Category, Question, Difficulty) VALUES('SOZI', 'Was sagt das Verhältniswahlrecht aus?', 4);
+INSERT INTO Question(Category, Question, Difficulty) VALUES('SOZI', 'DeUMM', 5);
+
+
+-- -----------------------------------------------------
+-- Question Rotation 2
+-- -----------------------------------------------------
+INSERT INTO Question(Category, Question, Difficulty) VALUES('AWP', 'DrUMM', 1);
+INSERT INTO Question(Category, Question, Difficulty) VALUES('AWP', 'DrUMM', 2);
+INSERT INTO Question(Category, Question, Difficulty) VALUES('AWP', 'DrUMM', 3);
+INSERT INTO Question(Category, Question, Difficulty) VALUES('AWP', 'DrUMM', 4);
+INSERT INTO Question(Category, Question, Difficulty) VALUES('AWP', 'DrUMM', 5);
+INSERT INTO Question(Category, Question, Difficulty) VALUES('BWP', 'DrUMM', 1);
+INSERT INTO Question(Category, Question, Difficulty) VALUES('BWP', 'DrUMM', 2);
+INSERT INTO Question(Category, Question, Difficulty) VALUES('BWP', 'DrUMM', 3);
+INSERT INTO Question(Category, Question, Difficulty) VALUES('BWP', 'DrUMM', 4);
+INSERT INTO Question(Category, Question, Difficulty) VALUES('BWP', 'DrUMM', 5);
+INSERT INTO Question(Category, Question, Difficulty) VALUES('VSY', 'DrUMM', 1);
+INSERT INTO Question(Category, Question, Difficulty) VALUES('VSY', 'DrUMM', 2);
+INSERT INTO Question(Category, Question, Difficulty) VALUES('VSY', 'DrUMM', 3);
+INSERT INTO Question(Category, Question, Difficulty) VALUES('VSY', 'DrUMM', 4);
+INSERT INTO Question(Category, Question, Difficulty) VALUES('VSY', 'DrUMM', 5);
+INSERT INTO Question(Category, Question, Difficulty) VALUES('ITS', 'DrUMM', 1);
+INSERT INTO Question(Category, Question, Difficulty) VALUES('ITS', 'DrUMM', 2);
+INSERT INTO Question(Category, Question, Difficulty) VALUES('ITS', 'DrUMM', 3);
+INSERT INTO Question(Category, Question, Difficulty) VALUES('ITS', 'DrUMM', 4);
+INSERT INTO Question(Category, Question, Difficulty) VALUES('ITS', 'DrUMM', 5);
+INSERT INTO Question(Category, Question, Difficulty) VALUES('SOZI', 'DrUMM', 1);
+INSERT INTO Question(Category, Question, Difficulty) VALUES('SOZI', 'DUrMM', 2);
+INSERT INTO Question(Category, Question, Difficulty) VALUES('SOZI', 'DUMrM', 3);
+INSERT INTO Question(Category, Question, Difficulty) VALUES('SOZI', 'DUMMr', 4);
+INSERT INTO Question(Category, Question, Difficulty) VALUES('SOZI', 'DeUMM', 5);
+INSERT INTO chatmessage(Time, Message, Accounts_Username, GameRoom_idGameRoom) VALUES(Now(), 'Geile schlange', 'test', 1);
 INSERT INTO chatmessage(Time, Message, Accounts_Username, GameRoom_idGameRoom) VALUES(Now(), 'toll', 'test', 1);
 INSERT INTO chatmessage(Time, Message, Accounts_Username, GameRoom_idGameRoom) VALUES(Now(), 'dumm', 'test', 1);
 INSERT INTO chatmessage(Time, Message, Accounts_Username, GameRoom_idGameRoom) VALUES(Now(), 'spitze', 'test', 1);
