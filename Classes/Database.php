@@ -185,12 +185,16 @@ class Database{
 	public function getCurrentGameID($idGameRoom){
 
 	}
-
+	
 	/**
 	 * get 4 questions by category
 	 */
 	public function getQuestions($category){
-		$sql = $this->db->prepare("SELECT * FROM Question WHERE Category Like ? LIMIT 4");
+		$sql = $this->db->prepare("SELECT Question,idQuestion,Difficulty FROM 
+		(SELECT * FROM Question ORDER BY RAND() WHERE Category LIKE ?) as rnd
+		GROUP BY rnd.Difficulty 
+		ORDER BY Difficulty ASC
+		LIMIT 4");
 		$sql->execute([$category]);
 		
 		$questions = $sql->fetchAll();

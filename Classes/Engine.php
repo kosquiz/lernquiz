@@ -124,13 +124,20 @@ class Engine{
             return;
         }
 
+        if(array_key_exists('private', $_POST)){
+            if($_POST['private']=='on')
+                $private = 1;
+        }
+        else
+            $private = 0;
 
-        //TODO NAME AND CREATOR
-        //$private = $_POST['private'];
-        //$password = $_POST['password'];
+        if(array_key_exists('roomPassword',$_POST))
+            $password = $_POST['roomPassword'];
+        else
+            $password = "";
+        
         $roomName = $_POST['roomName'];
-        $private = 0;
-        $password = "";
+       
         
         $gameRoomID = $this->db->newGameRoom($roomName, 1, $private, $password, $_SESSION['user']);
         $_SESSION['roomID'] = $gameRoomID;
