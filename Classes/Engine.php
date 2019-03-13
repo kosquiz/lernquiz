@@ -133,6 +133,7 @@ class Engine{
         //TODO RETURN NEW GAMEROOM ID
         $gameRoomID = $this->db->newGameRoom($roomName, 1, $private, $password, $_SESSION['user']);
         $_SESSION['roomID'] = $gameRoomID;
+        $this->db->setGameRoom($gameRoomID, $_SESSION['user']);
         header('Location: index.php');
     }
 
@@ -146,12 +147,13 @@ class Engine{
         //TODO if private, or passworded
 
         $_SESSION['roomID'] = $_POST['roomID'];
-
+        $this->db->setGameRoom($_POST['roomID'], $_SESSION['user']);
         header('Location: index.php');
     }
 
     public function leaveGameRoomAction(){
         unset($_SESSION['roomID']);
+        $this->db->setGameRoom(NULL, $_SESSION['user']);
         header('Location: index.php');
     }
 

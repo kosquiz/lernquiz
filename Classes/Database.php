@@ -105,7 +105,7 @@ class Database{
     public function setGameRoom($gameRoom,$user){
 
         $sql = $this->db->prepare("UPDATE accounts SET GameRoom_idGameRoom = ? WHERE Username = ?;");
-        $sql->execute([$gameRoom]);
+        $sql->execute([$gameRoom, $user]);
 
     }
 
