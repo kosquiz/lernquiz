@@ -9,22 +9,24 @@ class Output{
 	}
 
 	public function indexOutput($variables){
-	echo "<pre>";
+	/*echo "<pre>";
 		print_r($variables);
-		echo "</pre>";
+		echo "</pre>";*/
 		?>
 		<link rel="stylesheet" href="Style.css">
 <h2>Räume</h2>
 <form action="index.php?site=createRoom" method="post">
 <button type="submit">Raum erstellen</button>
 <input type="text" name="roomName" placeholder="Geben Sie einen Namen für den Raum ein" maxlength="45" style="width: 16rem"></input>
-<input type="checkbox" name="private">Privater Raum</input>
+<input type="checkbox" name="private"> Privater Raum</input>
 <p>(max. 45 Zeichen)</p>
+<input type="text" name="roomPassword" placeholder="Geben Sie ein Passwort für den Raum ein" maxlength="45" style="width: 16rem">Raum Passwort</input><p>(Feld Optional)</p>
 </form>
 
 		<?php
 
-		foreach($variables['rooms'] as $room):?>
+		foreach($variables['rooms'] as $room):
+			if($room['isActive']==1):?>
 			<div class="room">
 			<p>Ersteller: <?php echo $room['Accounts_Username']; ?>
 			<P>Raummname: <?php echo $room['GameRoomName'];?></p>
@@ -35,6 +37,7 @@ class Output{
 			</form>
 			</div>
 	<?php
+			endif;
 		endforeach;
 ?>
 <button type="submit" onclick="window.location.href='index.php?site=logout'">Logout</button>
@@ -80,7 +83,13 @@ class Output{
 
 <link rel="stylesheet" href="Style.css">
 <!-- Start Header -->
-<div>
+<div></div>
+<!-- End Header -->
+
+<!-- Start Dashboard -->
+<div class="dashboard">
+</div>
+<!-- End Dashboard -->
 
 <!-- start chatbox-->
 <div class="chatbox">
@@ -89,9 +98,10 @@ class Output{
 <input class="write" id="chatInput" placeholder="Schreiben Sie eine Nachricht">
 <button class="send" id="chatSubmit" type="button">Senden</button>
 <label><?php  ?></label>
-<button class="Logout" type="submit" onclick="window.location.href='index.php?site=logout'">Logout</button>
-<button class="Logout" type="submit" onclick="window.location.href='index.php?site=leaveRoom'">Raum Verlassen</button>
-
+</div>
+<div class="backBtns">
+	<button class="Logout" type="submit" onclick="window.location.href='index.php?site=logout'">Logout</button>
+	<button class="Logout" type="submit" onclick="window.location.href='index.php?site=leaveRoom'">Raum Verlassen</button>
 </div>
 <!-- end chatbox-->
 
