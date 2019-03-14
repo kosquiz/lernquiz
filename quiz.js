@@ -32,6 +32,19 @@ $(document).ready(function(){
             }
         });
 
+        $.ajax({
+            type: "GET",
+            url: "index.php?site=getActive",
+            success: function(res){
+                res = JSON.parse(res);
+                var users = "";
+                res['users'].forEach(function(user){
+                    users += user + " ";
+                });
+                $('.onlinePoint').empty().html(users)
+            }
+        });
+
     }, 500);
 
 

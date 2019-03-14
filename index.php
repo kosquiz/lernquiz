@@ -51,6 +51,10 @@ switch($site){
 	case "setActive":
 		$engine->setUserActiveAjaxAction();
 		break;
+	
+	case "getActive":
+		$engine->getUserActiveAjaxAction();
+		break;
 
 	//ROOMS
 	case "createRoom":

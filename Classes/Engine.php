@@ -196,6 +196,16 @@ class Engine{
         }
     }
 
+    private function getUsersInRoom(){
+        $users = $this->db->getActiveUsers();
+        $active = [];
+        foreach($users as $user){
+            if($user['GameRoom_idGameRoom'] == $_SESSION['roomID'])
+                $active[] = $user['Username'];
+        }
+        return $active;
+    }
+
     /**
      * AJAX Actions
      */
@@ -241,15 +251,9 @@ class Engine{
         echo "user set active";
     }
 
-    public function getUserActiveAjax(){
-        $users = $this->db->getActiveUsers();
-        $ret = [];
-
-        foreach($users as $u){
-            $ret[] = $u['Username'];
-        }
-
-        echo json_encode(['success'=>true, 'users'=>$ret]);
+    public function getUserActiveAjaxAction(){
+        $users = $this->getUsersInRoom();
+        echo json_encode(['success'=>true, 'users'=>$users]);
     }
 
 
