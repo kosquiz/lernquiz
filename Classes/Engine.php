@@ -152,7 +152,18 @@ class Engine{
             return;
         }
 
-        //TODO if private, or passworded
+        //TODO if private
+        //passwort
+        $rooms = $this->db->getGameRooms();
+        foreach($rooms as $room){
+            if($room['idGameRoom']==$_POST['roomID'] && !empty($room['Password'])){
+                if(array_key_exists('password', $_POST) && $_POST['password']!=$room['Password']){
+                    header('Location: index.php');
+                    return;
+                }
+                break;
+            }
+        }
 
         $_SESSION['roomID'] = $_POST['roomID'];
         $this->db->setGameRoom($_POST['roomID'], $_SESSION['user']);

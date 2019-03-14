@@ -34,7 +34,7 @@ class Output{
 				<form action="index.php?site=joinRoom" method="post">
 					<input name="roomID" type="hidden" value="<?php echo $room['idGameRoom'];?>"></input>
 				<button type="submit" style="float: right; margin-right: 20px">Beitreten</button>
-				<?php if(array_key_exists('password', $room)):?>
+				<?php if(array_key_exists('Password', $room)):?>
 					<input type="password" placeholder="Passwort eingeben" name="password">
 				<?php endif;?>
 			</form>
