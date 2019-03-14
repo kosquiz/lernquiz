@@ -105,6 +105,27 @@ class Output{
 	endfor;
 	?></table>
 </div>
+
+<!-- Start Answers -->
+<div>
+<table>
+<?php
+	for($a=0; $a<2; $a++):
+ 	?>
+ 		<tr>
+	 	<?php
+	 		for($c=0; $c=2; $c++):?>
+	 	<td class="answer">
+	 	</td>
+		<?php
+	endfor; ?>
+ </tr>
+<?php
+endfor; ?>
+</table>
+</div>
+<!-- End Answers -->
+
 <!-- End Dashboard -->
 
 <!-- start chatbox-->
