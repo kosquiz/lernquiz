@@ -88,22 +88,19 @@ class Output{
 
 <!-- Start Dashboard -->
 <div class="dashboard">
-	<?php
-	$count = 0;
-	?><table><?php
-	for($f=0; $f<5; $f++){
-		?><td><?php
-		for($s=0; $s<4; $s++){
+<table style="width: 100%; height: 100%"><?php
+	for($f=0; $f<5; $f++):
+		?><tr><?php
+		for($s=0; $s<4; $s++):
 ?>
-<tr>
-<div class="question"></div>
-</tr>
+<td class="question">
+<div></div>
+</td>
 <?php
-		}
-		?></td><?php
-	}
+		endfor;
+		?></tr><?php
+	endfor;
 	?></table>
-	<div class="question"></div>
 </div>
 <!-- End Dashboard -->
 
