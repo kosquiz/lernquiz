@@ -99,7 +99,7 @@ Gameboard
 
 /* Dashboard */
 .dashboard{
-  width: 75%;
+  width: 100%;
   float: left;
   height: 75%;
   border: 4px inset blue;
@@ -115,6 +115,22 @@ Gameboard
   margin-right: 2.5%;
   margin-left: 2.5%;
   border: 2px solid blue;
+}
+
+.answer{
+  width: 49%;
+  height: 5rem;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  border: 2px solid blue;
+}
+
+#answerPosition{
+  width: 100%;
+  float: left;
+  height: auto;
+  margin-top: 1.8rem;
+  margin-left: 3rem;
 }
 
 /*=============

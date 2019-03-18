@@ -90,14 +90,14 @@ class Output{
 <!-- End Header -->
 
 <!-- Start Dashboard -->
+<div style="width:75%">
 <div class="dashboard">
 <table style="width: 100%; height: 100%"><?php
 	for($f=0; $f<5; $f++):
 		?><tr><?php
 		for($s=0; $s<4; $s++):
 ?>
-<td class="question">
-<div></div>
+<td class="question number<?php echo ($f*4+$s+1);?>">
 </td>
 <?php
 		endfor;
@@ -107,15 +107,16 @@ class Output{
 </div>
 
 <!-- Start Answers -->
-<div>
-<table>
+<div id="answerPosition">
+<table style="width: 100%;">
 <?php
 	for($a=0; $a<2; $a++):
  	?>
  		<tr>
 	 	<?php
 	 		for($c=0; $c<2; $c++):?>
-	 	<td class="answer">
+	 	<td class="answer number<?php echo ($a*2+$c+1);?>">
+
 	 	</td>
 		<?php
 	endfor; ?>
@@ -123,6 +124,7 @@ class Output{
 <?php
 endfor; ?>
 </table>
+</div>
 </div>
 <!-- End Answers -->
 
