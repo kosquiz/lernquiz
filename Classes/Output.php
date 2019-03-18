@@ -90,6 +90,7 @@ class Output{
 <!-- End Header -->
 
 <!-- Start Dashboard -->
+<div style="width:100%">
 <div style="width:75%">
 <div class="dashboard">
 <table style="width: 100%; height: 100%"><?php
@@ -141,6 +142,7 @@ endfor; ?>
 <div class="backBtns">
 	<button class="Logout" type="submit" onclick="window.location.href='index.php?site=logout'">Logout</button>
 	<button class="Logout" type="submit" onclick="window.location.href='index.php?site=leaveRoom'">Raum Verlassen</button>
+</div>
 </div>
 <!-- end chatbox-->
 
