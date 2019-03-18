@@ -114,7 +114,7 @@ class Output{
  	?>
  		<tr>
 	 	<?php
-	 		for($c=0; $c=2; $c++):?>
+	 		for($c=0; $c<2; $c++):?>
 	 	<td class="answer">
 	 	</td>
 		<?php
