@@ -172,17 +172,30 @@ class Database{
 	}
 
 	/**
+	 * get full game log
+	 */
+	public function getGameLog($idGame){
+		$sql = $this->db->prepare("SELECT * FROM gamelog WHERE Game_idGame=?");
+		$sql->execute([$idGame]);
+		return $sql->fetchAll();
+	}
+
+	/**
 	 * start a new game in game room
 	 */
 	public function insertGame($idGameRoom){
-		$sql = $this->db->prepare("INSERT INTO gameroom() VALUES(?, NOW(), ?, ?, ?);");
+		$sql = $this->db->prepare("INSERT INTO game(GameRoom_idGameRoom) VALUES(?);");
 		$sql->execute([$idGameRoom]);
+		return $this->db->lastInsertId();
 	}
 
 	/**
 	 * get gameID for gameRoomID
 	 */
 	public function getCurrentGameID($idGameRoom){
+		$sql = $this->db->prepare("SELECT * FROM game WHERE GameRoom_idGameRoom=? ORDER BY idGame DESC LIMIT 1");
+		$sql->execute([$idGameRoom]);
+		return $sql->fetch();
 
 	}
 	
@@ -191,7 +204,7 @@ class Database{
 	 */
 	public function getQuestions($category){
 		$sql = $this->db->prepare("SELECT Question,idQuestion,Difficulty FROM 
-		(SELECT * FROM Question ORDER BY RAND() WHERE Category LIKE ?) as rnd
+		(SELECT * FROM Question WHERE Category LIKE ? ORDER BY RAND()) as rnd
 		GROUP BY rnd.Difficulty 
 		ORDER BY Difficulty ASC
 		LIMIT 4");
@@ -206,7 +219,7 @@ class Database{
 	 * get 4 categories
 	 */
 	public function getCategories(){
-		$sql = $this->db->prepare("SELECT * FROM Question ORDER BY RAND() LIMIT 4;");
+		$sql = $this->db->prepare("SELECT Category FROM Question GROUP BY Category ORDER BY RAND() LIMIT 4;");
 		$sql->execute();
 		
 		$categorys = $sql->fetchAll();
@@ -214,7 +227,22 @@ class Database{
 		return $categorys;
 
 	}
-	
+
+	/**
+	 * get one question by id
+	 */
+	public function getQuestion($questionID){
+		$sql = $this->db->prepare("SELECT Question,idQuestion,Difficulty FROM Question WHERE idQuestion=?");
+		$sql->execute([$questionID]);
+		return $sql->fetch();
+	}
+
+	/**
+	 * get answers to question
+	 */
+	public function getAnswers($questionID){
+
+	}
 
 	
 	public function debug(){

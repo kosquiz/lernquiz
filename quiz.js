@@ -28,7 +28,7 @@ $(document).ready(function(){
             type: "GET",
             url: "index.php?site=setActive",
             success: function(res){
-                console.log(res)
+                //console.log(res)
             }
         });
 
@@ -45,7 +45,16 @@ $(document).ready(function(){
             }
         });
 
-    }, 500);
+        $.ajax({
+            type: "GET",
+            url: "index.php?site=gameTick",
+            success: function(res){
+                //res = JSON.parse(res);
+                console.log("gameTick", res);
+            }
+        })
+
+    }, 1000);
 
 
     //Set user active

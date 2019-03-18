@@ -140,6 +140,9 @@ class Engine{
        
         
         $gameRoomID = $this->db->newGameRoom($roomName, 1, $private, $password, $_SESSION['user']);
+        $gameID = $this->db->insertGame($gameRoomID);
+        $this->initGameBoard($gameID);
+
         $_SESSION['roomID'] = $gameRoomID;
         $this->db->setGameRoom($gameRoomID, $_SESSION['user']);
         header('Location: index.php');
@@ -194,6 +197,59 @@ class Engine{
             if(!$active)
                 $this->db->deactivateGameRoom($room['idGameRoom']);
         }
+    }
+
+    /**
+     * build game board from database
+     * save questions in states id->questionid
+     */
+    private function initGameBoard($gameID){
+        $categories = $this->db->getCategories();
+        //$gameboard = [ 1=>['show'=>'', 'value'=>1, 'hidden'=>'']];
+        $gameboard = [];
+
+        $questions = [];
+        $i = 1;
+        foreach($categories as $category){
+            $gameboard[$i] = ['show'=>$category['Category'], 'value'=>0, 'hidden'=>false];
+            //insertGameLog($eventName, $idGame, $eventVal1, $eventVal2){
+            $this->db->insertGameLog('setCategory', $gameID, $i, $category['Category']);
+            $questions = $this->db->getQuestions($category['Category']);
+
+            $j = 1;
+            foreach($questions as $question){
+                $gameboard[$i+$j*4] = ['show'=>$question['Question'], 'value'=>$question['Difficulty'], 'hidden'=>true];
+                $this->db->insertGameLog('setQuestion', $gameID, $i+$j*4, $question['idQuestion']);
+                $j++;
+            }
+
+            $i++;
+        }
+
+    }
+
+    private function getGameBoard($gameID){
+        $log = $this->db->getGameLog($gameID);
+        $gameboard = [];
+        foreach($log as $l){
+
+            switch($l['EventName']){
+                case 'setCategory':
+                    $gameboard[$l['EventVal1']] = ['show'=>$l['EventVal2'], 'value'=>0, 'hidden'=>false];
+                    break;
+                
+                case 'setQuestion':
+                    $question = $this->db->getQuestion($l['EventVal2']);
+                    $gameboard[$l['EventVal1']] = ['show'=>$question['Question'], 'value'=>$question['Difficulty'], 'hidden'=>true];
+                    break;
+
+                case 'uncoverQuestion':
+                    $gameboard[$l['EventVal1']]['hidden'] = false;
+                    break;
+            }
+
+        }
+        return $gameboard;
     }
 
     private function getUsersInRoom(){
@@ -254,6 +310,15 @@ class Engine{
     public function getUserActiveAjaxAction(){
         $users = $this->getUsersInRoom();
         echo json_encode(['success'=>true, 'users'=>$users]);
+    }
+
+    public function gameTickAjaxAction(){
+        $gameID = $this->db->getCurrentGameID($_SESSION['roomID']);
+        $board = $this->getGameBoard($gameID['idGame']);
+
+        $res = ['board'=>$board];
+
+        echo json_encode($res);
     }
 
 
