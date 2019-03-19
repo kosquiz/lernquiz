@@ -90,11 +90,18 @@ class Output{
 
 <link rel="stylesheet" href="Style.css">
 <!-- Start Header -->
-<div></div>
+<header >
+<div>
+<div style="width: 20%; height: 100%">
+	<p>Raum "<?php echo 'test' ?>" erstellt von "<?php echo 'test' ?>"</p>
+</div>
+<div style="width: 80%; height: 100%"><p class="head">Wer wird Jeopardymillionär</p></div>
+</div>
+</header>
 <!-- End Header -->
 
 <!-- Start Dashboard -->
-<div style="width:100%">
+<div id="gameBoard">
 <div style="width:75%">
 <div class="dashboard">
 <table style="width: 100%; height: 100%"><?php
@@ -137,10 +144,11 @@ endfor; ?>
 
 <!-- start chatbox-->
 <div class="chatbox">
-	<div class="written" id="chatBox"></div>
+	<div class="written" id="chatBox">
+</div>
+<div class="playerView"></div>
 <input class="write" id="chatInput" placeholder="Schreiben Sie eine Nachricht">
 <button class="send" id="chatSubmit" type="button">Senden</button>
-<label><?php  ?></label>
 </div>
 <div class="backBtns">
 	<button class="Logout" type="submit" onclick="window.location.href='index.php?site=logout'">Logout</button>

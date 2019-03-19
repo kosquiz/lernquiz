@@ -18,41 +18,63 @@ login screen
 /*=============
 Gameboard
 ============*/
+#gameBoard{
+  width: 100%;
+  background-color: rgb(145, 184, 247);
+}
+
+/*-----Header-----*/
+
+header{
+  height: 5rem;
+  background-color: blue;
+opacity: 0.65;
+width: 100%;
+color: white;
+padding-left: 5px;
+padding-top: 0.05rem;
+font-size: 30px;
+}
+
+.head{
+  font-size: 60px;
+  text-align: center;
+  
+}
 
 /*-----Chat-----*/
 .chatbox{
-  height: 83%;
+  height: 85%;
   width: 10%;
   min-width: 283px;
-  border: 2px solid;
+  border: 2px solid blue;
   border-radius: 5px;
   margin-top: -701px;
   margin-right: 30px;
   float: right;
 }
 
-.write{
-  height: 10%;
-  max-height: 70px;
-  width: 96%;
-  border: 2px solid;
-  border-radius: 5px;
-  margin-left: 3.66667px;
-  margin-top: 5px;
-  margin-bottom: 8px;
-}
-
 .written{
-  height: 85%;
+  height: 75%;
   width: 96%;
-  border: 2px solid;
+  border: 2px solid blue;
   border-radius: 5px;
   margin-left: auto;
   margin-right: auto;
   margin-top: 5px;
-  background-size: cover;
   scroll-behavior: smooth;
   overflow: scroll;
+}
+
+.write{
+  height: 10%;
+  max-height: 50px;
+  width: 96%;
+  border: 2px solid blue;
+  border-radius: 5px;
+  margin-left: 3.66667px;
+  margin-top: 5px;
+  margin-bottom: 8px;
 }
 
 .send{
@@ -68,6 +90,16 @@ Gameboard
   min-width: 188px;
 }
 
+.playerView{
+  height: 10%;
+  width: 96%;
+  border: 2px solid blue;
+  margin-left: 3.66667px;
+  margin-top: 5px;
+  border-radius: 5px;
+}
+
+/*---back buttons---*/
 .backBtns{
   float: right;
   width: 10%;
