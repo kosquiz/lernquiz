@@ -109,7 +109,7 @@ class Output{
 		?><tr><?php
 		for($s=0; $s<4; $s++):
 ?>
-<td class="question number<?php echo ($f*4+$s+1);?>">
+<td class="question number<?php echo ($f*4+$s+1);?>" data-id="<?php echo ($f*4+$s+1);?>">
 </td>
 <?php
 		endfor;
