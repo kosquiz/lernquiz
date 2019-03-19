@@ -49,17 +49,28 @@ $(document).ready(function(){
             type: "GET",
             url: "index.php?site=gameTick",
             success: function(res){
-                //res = JSON.parse(res);
+                res = JSON.parse(res);
                 console.log("gameTick", res);
+                buildGameBoard(res);
             }
         })
 
     }, 1000);
 
-
-    //Set user active
-
-    
+    //button clicks
+    $('.question').click(function(){
+        var id = $(this).data('id');
+        var data = {'id':id};
+        console.log(data);
+        $.ajax({
+            type: "POST",
+            data: data,
+            url: "index.php?site=uncoverQuestion",
+            success: function(res){
+                console.log(JSON.parse(res));
+            }
+        })
+    })
    
 
 
@@ -68,6 +79,37 @@ $(document).ready(function(){
 //hide old messages
 var siteOpened = new Date();
 
+/**
+ * GAME
+ */
+
+function buildGameBoard(game){
+    var board = game['board'];
+
+    for(var key in board){
+        var ele = board[key];
+        if(ele['hidden'])
+            $('.question.number'+ele['pos']).empty().html(ele['value']);
+        else
+            $('.question.number'+ele['pos']).empty().html(ele['show']);
+    }
+
+    var answers = game['answers'];
+    if(answers.length == 0){
+        for(var i=1; i<=4; i++){
+            $('.answer.number'+i).empty();
+        }
+    }
+    for(var key in answers){
+        var ele = answer[key];
+        $('.answer.number'+ele['pos']).empty().html(ele['show']);
+    }
+
+}
+
+/**
+ * CHAT
+ */
 function submitChat(){
     var $msg = $('#chatInput').val();
     $('#chatInput').val("");

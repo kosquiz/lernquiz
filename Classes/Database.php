@@ -5,7 +5,7 @@ class Database{
 	private $db;
 	
 	public function __construct(){
-		$this->db = new PDO("mysql:dbname=kosquiz;host=127.0.0.1", "root");
+		$this->db = new PDO("mysql:dbname=kosquiz;host=127.0.0.1;charset=utf8", "root");
 		
 	}
 
@@ -91,7 +91,7 @@ class Database{
 	public function getActiveUsers(){
 		$inactive = Date("Y-m-d H:i:s", strtotime("-30 seconds"));
 		
-		$sql = $this->db->prepare("SELECT * FROM accounts WHERE LastActivity > '$inactive'");
+		$sql = $this->db->prepare("SELECT * FROM accounts WHERE LastActivity > '$inactive' ORDER BY Username ASC");
 		$sql->execute();
 		
 		$activeUsers = $sql->fetchAll();
@@ -241,6 +241,9 @@ class Database{
 	 * get answers to question
 	 */
 	public function getAnswers($questionID){
+		$sql = $this->db->prepare("SELECT * FROM answers WHERE Question_idQuestion=? ORDER BY idAnswer ASC");
+		$sql->execute([$questionID]);
+		return $sql->fetchAll();
 
 	}
 

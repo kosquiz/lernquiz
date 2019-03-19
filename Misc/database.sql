@@ -39,7 +39,7 @@ CREATE TABLE IF NOT EXISTS `kosquiz`.`Accounts` (
   `Username` VARCHAR(16) NULL,
   `Password` VARCHAR(2000) NOT NULL,
   `LastActivity` DATETIME NOT NULL,
-  `GameRoom_idGameRoom` INT NULL DEFAULT NULL,
+  `GameRoom_idGameRoom` INT NULL,
   PRIMARY KEY (`Username`),
   INDEX `fk_Accounts_GameRoom1_idx` (`GameRoom_idGameRoom` ASC),
   CONSTRAINT `fk_Accounts_GameRoom1`
@@ -112,6 +112,7 @@ CREATE TABLE IF NOT EXISTS `kosquiz`.`Answer` (
   `idAnswer` INT NOT NULL AUTO_INCREMENT,
   `Answer` VARCHAR(1000) NOT NULL,
   `Question_idQuestion` INT NOT NULL,
+  `Correct` TINYINT NULL,
   PRIMARY KEY (`idAnswer`),
   INDEX `fk_Answer_Question1_idx` (`Question_idQuestion` ASC),
   CONSTRAINT `fk_Answer_Question1`
@@ -161,6 +162,7 @@ ENGINE = InnoDB;
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
+
 
 -- -----------------------------------------------------
 -- Question Rotations 1
@@ -220,8 +222,27 @@ INSERT INTO Question(Category, Question, Difficulty) VALUES('SOZI', 'DUrMM', 2);
 INSERT INTO Question(Category, Question, Difficulty) VALUES('SOZI', 'DUMrM', 3);
 INSERT INTO Question(Category, Question, Difficulty) VALUES('SOZI', 'DUMMr', 4);
 INSERT INTO Question(Category, Question, Difficulty) VALUES('SOZI', 'DeUMM', 5);
-INSERT INTO chatmessage(Time, Message, Accounts_Username, GameRoom_idGameRoom) VALUES(Now(), 'Geile schlange', 'test', 1);
-INSERT INTO chatmessage(Time, Message, Accounts_Username, GameRoom_idGameRoom) VALUES(Now(), 'toll', 'test', 1);
-INSERT INTO chatmessage(Time, Message, Accounts_Username, GameRoom_idGameRoom) VALUES(Now(), 'dumm', 'test', 1);
-INSERT INTO chatmessage(Time, Message, Accounts_Username, GameRoom_idGameRoom) VALUES(Now(), 'spitze', 'test', 1);
+
+
+INSERT INTO answer (Answer, Correct, Question_idQuestion) VALUES ("12 Bit", 0, 11);
+INSERT INTO answer (Answer, Correct, Question_idQuestion) VALUES ("22 Byte", 0, 11);
+INSERT INTO answer (Answer, Correct, Question_idQuestion) VALUES ("77 Bit", 0, 11);
+INSERT INTO answer (Answer, Correct, Question_idQuestion) VALUES ("32 Bit", 1, 11);
+
+
+INSERT INTO answer (Answer, Correct, Question_idQuestion) VALUES ("255.0.0.255", 0, 12);
+INSERT INTO answer (Answer, Correct, Question_idQuestion) VALUES ("255.0.255.0", 0, 12);
+INSERT INTO answer (Answer, Correct, Question_idQuestion) VALUES ("255.128.0.0", 0, 12);
+INSERT INTO answer (Answer, Correct, Question_idQuestion) VALUES ("255.255.255.0", 1, 12);
+
+
+INSERT INTO answer (Answer, Correct, Question_idQuestion) VALUES ("200 Bit", 0, 13);
+INSERT INTO answer (Answer, Correct, Question_idQuestion) VALUES ("5 Byte", 0, 13);
+INSERT INTO answer (Answer, Correct, Question_idQuestion) VALUES ("64 Bit", 0, 13);
+INSERT INTO answer (Answer, Correct, Question_idQuestion) VALUES ("128 Bit", 1, 13);
+
+
+
+
+
 

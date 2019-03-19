@@ -231,25 +231,68 @@ class Engine{
     private function getGameBoard($gameID){
         $log = $this->db->getGameLog($gameID);
         $gameboard = [];
+        $answers = [];
         foreach($log as $l){
 
             switch($l['EventName']){
                 case 'setCategory':
-                    $gameboard[$l['EventVal1']] = ['show'=>$l['EventVal2'], 'value'=>0, 'hidden'=>false];
+                    $gameboard[$l['EventVal1']] = ['show'=>$l['EventVal2'], 'value'=>0, 'hidden'=>false, 'pos'=> $l['EventVal1']];
                     break;
                 
                 case 'setQuestion':
                     $question = $this->db->getQuestion($l['EventVal2']);
-                    $gameboard[$l['EventVal1']] = ['show'=>$question['Question'], 'value'=>$question['Difficulty'], 'hidden'=>true];
+                    $gameboard[$l['EventVal1']] = ['show'=>$question['Question'], 'value'=>$question['Difficulty'], 'hidden'=>true, 'pos'=> $l['EventVal1']];
                     break;
 
                 case 'uncoverQuestion':
                     $gameboard[$l['EventVal1']]['hidden'] = false;
+                    $qAnswers = $this->db->getAnswers($l['EventVal2']);
+                    $i = 1;
+                    foreach($qAnswers as $a){
+                        $answers[$i] = ['id'=>$a['idAnswer'], 'show'=>$a['Answer'], 'correct'=>$a['Correct'], 'pos'=>$i];
+                        $i++;
+                    }
+                    break;
+
+                case 'playerTurn':
+                    $answers = [];
                     break;
             }
 
+        
         }
-        return $gameboard;
+
+        return ['board'=>$gameboard, 'answers'=>$answers];
+
+    }
+
+    private function gameTick($gameID){
+        $log = $this->db->getGameLog($gameID);
+
+        $player = $this->whichPlayerTurn($gameID);
+
+        $l = $log[count($log)-1];
+
+        //ANSWER QUESTION
+        if($l['EventName']=='playerAnswered'){
+            $board = $this->getGameBoard;
+        }
+
+
+        //PICK NEXT PLAYER
+        if(empty($playerID)){
+            $player = $this->pickNextPlayer($gameID, $turns);
+            $this->db->insertGameLog('playerTurn', $gameID, $player, "");
+        }
+
+    }
+
+    private function pickNextPlayer($gameID, $turns){
+        $users = $this->getUsersInRoom();
+        $userCount = count($users);
+        $nextUser = $users[$turns%$userCount];
+        return $nextUser;
+
     }
 
     private function getUsersInRoom(){
@@ -262,9 +305,35 @@ class Engine{
         return $active;
     }
 
+    private function whichPlayerTurn($gameID){
+        $log = $this->db->getGameLog($gameID);
+        $player = "";
+        $turns = 0;
+        foreach($log as $l){
+            switch($l['EventName']){
+                case 'playerTurn':
+                    $player = $l['EventVal1'];
+                    break;
+
+                case 'playerAnswered':
+                    $turns++;
+                    $player = "";
+            }
+        }
+        return $player;
+    }
+
     /**
      * AJAX Actions
      */
+
+    public function uncoverAjaxAction(){
+        //TURN?
+        $gameID = $this->db->getCurrentGameID($_SESSION['roomID']);
+        $this->whichPlayerTurn($gameID);
+        
+        //QUESTION OPEN?
+    }
 
     public function sendChatAjaxAction(){
 
@@ -316,9 +385,13 @@ class Engine{
         $gameID = $this->db->getCurrentGameID($_SESSION['roomID']);
         $board = $this->getGameBoard($gameID['idGame']);
 
-        $res = ['board'=>$board];
 
-        echo json_encode($res);
+        $res = ['board'=>$board['board'], 'answers'=>$board['answers']];
+        echo json_encode($board, JSON_UNESCAPED_UNICODE );
+       
+        die();
+
+        echo json_encode(['res'=>'res', 'gameID'=>$gameID['idGame'], 'roomID'=>$_SESSION['roomID']]);
     }
 
 
