@@ -19,6 +19,7 @@ login screen
 Gameboard
 ============*/
 
+/*-----Chat-----*/
 .chatbox{
   height: 83%;
   width: 10%;
@@ -31,8 +32,8 @@ Gameboard
 }
 
 .write{
-  height: 4%;
-  max-height: 30px;
+  height: 10%;
+  max-height: 70px;
   width: 96%;
   border: 2px solid;
   border-radius: 5px;
@@ -54,29 +55,6 @@ Gameboard
   overflow: scroll;
 }
 
-.online{
-  height: 3%;
-  width: 96%;
-  margin-left: 3.66667px;
-  border: 2px solid;
-  border-radius: 5px;
-  margin-top: 5px;
-}
-
-.onlinePoint{
-  border-radius: 50%;
-  height: 10px;
-  width: 10px;
-  background-color: green;
-}
-
-.onlinePlayer{
-  display: none;
-  border: 2px solid;
-  border-radius: 5px;
-  width: auto;
-}
-
 .send{
   margin-left: 3.66667px;
   border: 2px solid;
@@ -87,17 +65,19 @@ Gameboard
   height: 50px;
   width: 100%;
   margin-top: 10px;
+  min-width: 188px;
 }
 
 .backBtns{
   float: right;
   width: 10%;
+  min-width: 283px;
   margin-right: 30px;
   margin-bottom: 10px;
   margin-top: auto;
 }
 
-/* Dashboard */
+/*---Dashboard---*/
 .dashboard{
   width: 100%;
   float: left;
@@ -145,4 +125,8 @@ Index
   border: 2px solid;
   padding: 10px;
   overflow: hidden;
+}
+
+.btn{
+
 }

@@ -16,10 +16,12 @@ class Output{
 		<link rel="stylesheet" href="Style.css">
 <h2>Räume</h2>
 <form action="index.php?site=createRoom" method="post">
-<button type="submit">Raum erstellen</button>
 <input type="text" name="roomName" placeholder="Geben Sie einen Namen für den Raum ein" maxlength="45" style="width: 16rem"></input>
-<input type="checkbox" name="private"> Privater Raum</input>
 <p>(max. 45 Zeichen)</p>
+<div style="margin-top: 20px; margin-bottom: 20px">
+<button class="btn" type="submit">Raum erstellen</button>
+<input type="checkbox" name="private"> Privater Raum</input>
+</div>
 <input type="text" name="roomPassword" placeholder="Geben Sie ein Passwort für den Raum ein" maxlength="45" style="width: 16rem">Raum Passwort</input><p>(Feld Optional)</p>
 </form>
 
@@ -34,16 +36,18 @@ class Output{
 				<form action="index.php?site=joinRoom" method="post">
 					<input name="roomID" type="hidden" value="<?php echo $room['idGameRoom'];?>"></input>
 				<button type="submit" style="float: right; margin-right: 20px">Beitreten</button>
-				<?php if(array_key_exists('Password', $room)):?>
+				<?php
+				if(array_key_exists('Password', $room)):?>
 					<input type="password" placeholder="Passwort eingeben" name="password">
-				<?php endif;?>
-			</form>
-			</div>
+				<?php
+			endif;?>
+	</form>
+		</div>
 	<?php
 			endif;
 		endforeach;
 ?>
-<button type="submit" onclick="window.location.href='index.php?site=logout'">Logout</button>
+<button class="btn" type="submit" onclick="window.location.href='index.php?site=logout'">Logout</button>
 <?php
 	}
 
@@ -134,7 +138,6 @@ endfor; ?>
 <!-- start chatbox-->
 <div class="chatbox">
 	<div class="written" id="chatBox"></div>
-	<button class="online"><div class="onlinePoint"></div><div class="onlinePlayer"></div></button>
 <input class="write" id="chatInput" placeholder="Schreiben Sie eine Nachricht">
 <button class="send" id="chatSubmit" type="button">Senden</button>
 <label><?php  ?></label>
