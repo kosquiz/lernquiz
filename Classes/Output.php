@@ -92,10 +92,10 @@ class Output{
 <!-- Start Header -->
 <header >
 <div>
-<div style="width: 20%; height: 100%">
-	<p>Raum "<?php echo 'test' ?>" erstellt von "<?php echo 'test' ?>"</p>
+<div style="width: 40%; height: 100%; float: left">
+	<p>Raum "<?php echo 'test';?>" erstellt von "<?php echo 'test';?>"</p>
 </div>
-<div style="width: 80%; height: 100%"><p class="head">Wer wird Jeopardymillionär</p></div>
+<div style="width: 60%; height: 100%; float: left;"><p class="head">Wer wird Jeopardymillionär</p></div>
 </div>
 </header>
 <!-- End Header -->
