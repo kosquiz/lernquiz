@@ -228,6 +228,16 @@ class Engine{
 
     }
 
+    private function getQuestionID($gameID, $questionPos){
+        $log = $this->db->getGameLog($gameID);
+        
+        foreach($log as $l){
+            print_r($l);
+            if($l['EventName']=='setQuestion')
+                return $l['EventVal2'];
+        }
+    }
+
     private function getGameBoard($gameID){
         $log = $this->db->getGameLog($gameID);
         $gameboard = [];
@@ -246,7 +256,9 @@ class Engine{
 
                 case 'uncoverQuestion':
                     $gameboard[$l['EventVal1']]['hidden'] = false;
-                    $qAnswers = $this->db->getAnswers($l['EventVal2']);
+                    $questionPos = $l['EventVal1'];
+                    $questionID = $this->db->getQuestionAtPos($gameID, $questionPos)['EventVal2'];
+                    $qAnswers = $this->db->getAnswers($questionID);
                     $i = 1;
                     foreach($qAnswers as $a){
                         $answers[$i] = ['id'=>$a['idAnswer'], 'show'=>$a['Answer'], 'correct'=>$a['Correct'], 'pos'=>$i];
@@ -365,8 +377,16 @@ class Engine{
     public function uncoverAjaxAction(){
         //TURN?
         $gameID = $this->db->getCurrentGameID($_SESSION['roomID']);
+        if(empty($gameID)){
+            echo json_encode(['success'=>false, 'message'=>'Invalid Game!']);
+            return;
+        }
+        else
+            $gameID = $gameID['idGame'];
+
         $player = $this->whichPlayerTurn($gameID)['player'];
         $questionID = $_POST['id'];
+        
         
         if($player != $_SESSION['user']){
             echo json_encode(['success'=>false, 'message'=>'User not logged in!']);
@@ -374,7 +394,7 @@ class Engine{
         }
 
         //QUESTION OPEN?
-        $question = $this->openQuestion($gameID['idGame']);
+        $question = $this->openQuestion($gameID);
         if(empty($question)){
             $this->db->insertGameLog('uncoverQuestion', $gameID, $questionID, "");
             $message = "Spieler ". $player ." hat eine Frage aufgedeckt!";

@@ -107,7 +107,7 @@ function buildGameBoard(game){
         }
     }
     for(var key in answers){
-        var ele = answer[key];
+        var ele = answers[key];
         $('.answer.number'+ele['pos']).empty().html(ele['show']);
     }
 

@@ -178,7 +178,7 @@ INSERT INTO Question(Category, Question, Difficulty) VALUES('BWP', 'DrUMM', 3);
 INSERT INTO Question(Category, Question, Difficulty) VALUES('BWP', 'DrUMM', 4);
 INSERT INTO Question(Category, Question, Difficulty) VALUES('BWP', 'DrUMM', 5);
 INSERT INTO Question(Category, Question, Difficulty) VALUES('VSY', 'Aus wievielen Bit besteht eine IPv4 Adresse?', 1);
-INSERT INTO Question(Category, Question, Difficulty) VALUES('VSY', 'Welches der folgenden Subnetze ist nicht richtig?', 2);
+INSERT INTO Question(Category, Question, Difficulty) VALUES('VSY', 'Welches der folgenden Subnetze ist richtig?', 2);
 INSERT INTO Question(Category, Question, Difficulty) VALUES('VSY', 'Wie groß ist eine IPv6 Adresse?', 3);
 INSERT INTO Question(Category, Question, Difficulty) VALUES('VSY', 'DrUMM', 4);
 INSERT INTO Question(Category, Question, Difficulty) VALUES('VSY', 'DrUMM', 5);
