@@ -344,7 +344,7 @@ class Engine{
     }
 
     /**
-     * returns a questin if one is open currently
+     * returns a question if one is open currently
      */
     private function openQuestion($gameID){
         $log = $this->db->getGameLog($gameID);
@@ -370,29 +370,85 @@ class Engine{
      * AJAX Actions
      */
 
+    private function verifyAjax(){
+         //TURN?
+         $gameID = $this->db->getCurrentGameID($_SESSION['roomID']);
+         if(empty($gameID)){
+             echo json_encode(['success'=>false, 'message'=>'Invalid Game!']);
+             die;
+         }
+         else
+             $gameID = $gameID['idGame'];
+ 
+         $player = $this->whichPlayerTurn($gameID)['player'];
+         $questionID = $_POST['id'];
+         
+         
+         if($player != $_SESSION['user']){
+             echo json_encode(['success'=>false, 'message'=>'User not logged in!']);
+             die;
+         }
+
+         return ['player'=>$player, 'gameID'=>$gameID];
+    }
+
+    public function answerQuestionAjaxAction(){
+        $res = $this->verifyAjax();
+        $player = $res['player'];
+        $gameID = $res['gameID'];
+
+        $answerPos = $_POST['id'];
+
+
+        //time to answer
+        $log = $this->db->getGameLog($gameID);
+        if($log[count($log)-1]['EventName']=='uncoverQuestion'){
+            
+            $questionPos = $log[count($log)-1]['EventVal1'];
+            $questionID = $this->db->getQuestionAtPos($gameID, $questionPos)['EventVal2'];
+            $qAnswers = $this->db->getAnswers($questionID);
+            $i = 0;
+            echo $questionPos;print_r($qAnswers);
+            $debugAnswer = true;
+            foreach($qAnswers as $answer){
+                $i++;
+                if($i!=$answerPos)
+                    continue;
+                
+                $this->db->insertGameLog('playerAnswered', $gameID, $player, "");
+                if($answer['Correct']==1){
+                    $debugAnswer = false;
+                    $this->db->insertGameLog('addPoints', $gameID, $player, 10);
+                    $message = "Spieler ". $player ." hat eine Frage richtig beantwortet!";
+                    $this->db->insertChat($message, "admin", $_SESSION['roomID']);
+                }
+                else{
+                    $debugAnswer = false;
+                    $message = "Spieler ". $player ." hat eine Frage falsch beantwortet!";
+                    $this->db->insertChat($message, "admin", $_SESSION['roomID']);
+                }
+            }
+            if($debugAnswer){
+                $this->db->insertGameLog('playerAnswered', $gameID, $player, "");
+                $message = "Spieler ". $player ." hat eine ungültige Antwort abgegeben!";
+                $this->db->insertChat($message, "admin", $_SESSION['roomID']);
+            }
+
+        }
+       
+
+       
+    }
 
      /**
       * uncovers one question on the board, activated by user click
       */
     public function uncoverAjaxAction(){
-        //TURN?
-        $gameID = $this->db->getCurrentGameID($_SESSION['roomID']);
-        if(empty($gameID)){
-            echo json_encode(['success'=>false, 'message'=>'Invalid Game!']);
-            return;
-        }
-        else
-            $gameID = $gameID['idGame'];
+        $res = $this->verifyAjax();
+        $player = $res['player'];
+        $gameID = $res['gameID'];
 
-        $player = $this->whichPlayerTurn($gameID)['player'];
         $questionID = $_POST['id'];
-        
-        
-        if($player != $_SESSION['user']){
-            echo json_encode(['success'=>false, 'message'=>'User not logged in!']);
-            return;
-        }
-
         //QUESTION OPEN?
         $question = $this->openQuestion($gameID);
         if(empty($question)){

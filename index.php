@@ -65,6 +65,10 @@ switch($site){
 		$engine->uncoverAjaxAction();
 		break;
 
+	case "answerQuestion":
+		$engine->answerQuestionAjaxAction();
+		break;
+
 	//ROOMS
 	case "createRoom":
 		$engine->createGameRoomAction();

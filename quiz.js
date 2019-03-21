@@ -21,6 +21,9 @@ $(document).ready(function(){
                 res = JSON.parse(res);
                 var html = buildChat(res['chat']);
                 $('#chatBox').empty().html(html);
+                
+                var objDiv = document.getElementById("chatBox");
+                objDiv.scrollTop = objDiv.scrollHeight;
             }
         });
 
@@ -39,9 +42,9 @@ $(document).ready(function(){
                 res = JSON.parse(res);
                 var users = "";
                 res['users'].forEach(function(user){
-                    users += user + " ";
+                    users += user + "<br> ";
                 });
-                $('.onlinePoint').empty().html(users)
+                $('.playerView').empty().html(users)
             }
         });
 
@@ -77,6 +80,20 @@ $(document).ready(function(){
             }
         })
     })
+
+    $('.answer').click(function(){
+        var id = $(this).data('id');
+        var data = {'id':id};
+        console.log(data);
+        $.ajax({
+            type: "POST",
+            data: data,
+            url: "index.php?site=answerQuestion",
+            success: function(res){
+                console.log(res);return;
+            }
+        })
+    });
    
 
 
@@ -136,7 +153,7 @@ function buildChat(chat){
     chat.forEach(function(line){
         var date = new Date(line['Time']);
         if(date<siteOpened)
-            return;
+            //return;
         var showDate = date.getHours().pad() + ":" + date.getMinutes().pad();
         html += "[" + showDate + "] " + line['Accounts_Username'] + " | " + line['Message'] + "<br>";
     })
