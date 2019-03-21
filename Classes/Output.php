@@ -141,7 +141,7 @@ class Output{
  		<tr>
 	 	<?php
 	 		for($c=0; $c<2; $c++):?>
-	 	<td class="answer number<?php echo ($a*2+$c+1);?>">
+	 	<td class="answer number<?php echo ($a*2+$c+1);?>" data-id="<?php echo ($a*2+$c+1);?>">
 
 	 	</td>
 		<?php
