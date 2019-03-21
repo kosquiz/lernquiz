@@ -14,16 +14,26 @@ class Output{
 		echo "</pre>";*/
 		?>
 		<link rel="stylesheet" href="Style.css">
-<h2>Räume</h2>
-<form action="index.php?site=createRoom" method="post">
+		<header class="wave head">
+			<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none">
+		    <polygon class="svg--sm" fill="white" points="0,0 30,100 65,21 90,100 100,75 100,100 0,100"/>
+		    <polygon class="svg--lg" fill="white" points="0,0 15,100 33,21 45,100 50,75 55,100 72,20 85,100 95,50 100,80 100,100 0,100" />
+		  </svg>
+		<div>
+		<div style="width: 40%; height: 100%; float: left">
+			<h1>Räume</h1>
+		</div>
+		</div>
+		</header>
+<form action="index.php?site=createRoom" method="post" style="margin-top: 1.5rem">
 <input type="text" name="roomName" placeholder="Geben Sie einen Namen für den Raum ein" maxlength="45" style="width: 16rem"></input>
 <p>(max. 45 Zeichen)</p>
 <div style="margin-top: 20px; margin-bottom: 20px">
 <button class="btn" type="submit">Raum erstellen</button>
-<p>Privater Raum</p>
-<input type="checkbox" name="private"></input>
+<input type="checkbox" name="private"> Privater Raum</input>
 </div>
-<input type="text" name="roomPassword" placeholder="Geben Sie ein Passwort für den Raum ein" maxlength="45" style="width: 16rem">Raum Passwort</input><p>(Feld Optional)</p>
+<p>Raum Passwort:</p>
+<input type="text" name="roomPassword" placeholder="Geben Sie ein Passwort für den Raum ein" maxlength="45" style="width: 16rem"></input><p>(Feld Optional)</p>
 </form>
 
 		<?php
@@ -88,20 +98,24 @@ class Output{
 
 	public function gameBoardOutput(){
 ?>
-
+<div id="gameBoard">
 <link rel="stylesheet" href="Style.css">
 <!-- Start Header -->
-<header >
+<header class="wave head">
+	<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none">
+    <polygon class="svg--sm" fill="white" points="0,0 30,100 65,21 90,100 100,75 100,100 0,100"/>
+    <polygon class="svg--lg" fill="white" points="0,0 15,100 33,21 45,100 50,75 55,100 72,20 85,100 95,50 100,80 100,100 0,100" />
+  </svg>
 <div>
 <div style="width: 40%; height: 100%; float: left">
-	<p>Raum "<?php echo 'test';?>" erstellt von "<?php echo 'test';?>"</p>
+	<h1>Raum "<?php echo 'test';?>" erstellt von "<?php echo 'test';?>"</h1>
 </div>
 </div>
 </header>
 <!-- End Header -->
 
 <!-- Start Dashboard -->
-<div id="gameBoard">
+
 <div style="width:75%">
 <div class="dashboard">
 <table style="width: 100%; height: 100%"><?php
