@@ -283,6 +283,8 @@ class Engine{
         if(empty($playerID)){
             $player = $this->pickNextPlayer($gameID, $turns);
             $this->db->insertGameLog('playerTurn', $gameID, $player, "");
+            $message = "Spieler " . $player . " ist jetzt am Zug!";
+            $this->db->insertChat($message, "admin", $_SESSION['roomID']);
         }
 
     }
@@ -318,6 +320,7 @@ class Engine{
                 case 'playerAnswered':
                     $turns++;
                     $player = "";
+                    break;
             }
         }
         return $player;
@@ -385,6 +388,7 @@ class Engine{
         $gameID = $this->db->getCurrentGameID($_SESSION['roomID']);
         $board = $this->getGameBoard($gameID['idGame']);
 
+        $this->gameTick($gameID['idGame']);
 
         $res = ['board'=>$board['board'], 'answers'=>$board['answers']];
         echo json_encode($board, JSON_UNESCAPED_UNICODE );

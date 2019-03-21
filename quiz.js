@@ -49,9 +49,9 @@ $(document).ready(function(){
             type: "GET",
             url: "index.php?site=gameTick",
             success: function(res){
-                res = JSON.parse(res);
+                //res = JSON.parse(res);
                 console.log("gameTick", res);
-                buildGameBoard(res);
+                //buildGameBoard(res);
             }
         })
 

@@ -243,6 +243,6 @@ INSERT INTO answer (Answer, Correct, Question_idQuestion) VALUES ("128 Bit", 1, 
 
 
 
-
+insert into accounts VALUES ("admin", "adminhiddenpass", NOW(), NULL);
 
 
