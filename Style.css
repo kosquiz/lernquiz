@@ -172,4 +172,6 @@ Index
   border: 2px solid;
   padding: 10px;
   overflow: hidden;
+  background-image: linear-gradient(blue, #0f6bff);
+  color: white;
 }
