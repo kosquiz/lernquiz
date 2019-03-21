@@ -14,10 +14,10 @@ class Output{
 		echo "</pre>";*/
 		?>
 		<link rel="stylesheet" href="Style.css">
-		<header class="wave head">
+		<header class="head">
 			<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none">
-		    <polygon class="svg--sm" fill="white" points="0,0 30,100 65,21 90,100 100,75 100,100 0,100"/>
-		    <polygon class="svg--lg" fill="white" points="0,0 15,100 33,21 45,100 50,75 55,100 72,20 85,100 95,50 100,80 100,100 0,100" />
+		    <polygon class="svg--sm" fill="white" points="10,10 30,100 65,21 90,100 100,75 100,100 0,100"/>
+		    <polygon class="svg--lg" fill="white" points="10,10 15,100 33,21 45,100 50,75 55,100 72,20 85,100 95,50 100,80 100,100 0,100" />
 		  </svg>
 		<div>
 		<div style="width: 40%; height: 100%; float: left">
@@ -25,6 +25,8 @@ class Output{
 		</div>
 		</div>
 		</header>
+
+		<div style="margin-left: 2rem">
 <form action="index.php?site=createRoom" method="post" style="margin-top: 1.5rem">
 <input type="text" name="roomName" placeholder="Geben Sie einen Namen für den Raum ein" maxlength="45" style="width: 16rem"></input>
 <p>(max. 45 Zeichen)</p>
@@ -59,6 +61,7 @@ class Output{
 		endforeach;
 ?>
 <button class="btn" type="submit" onclick="window.location.href='index.php?site=logout'">Logout</button>
+</div>
 <?php
 	}
 
@@ -101,10 +104,10 @@ class Output{
 <div id="gameBoard">
 <link rel="stylesheet" href="Style.css">
 <!-- Start Header -->
-<header class="wave head">
+<header class="head">
 	<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none">
-    <polygon class="svg--sm" fill="white" points="0,0 30,100 65,21 90,100 100,75 100,100 0,100"/>
-    <polygon class="svg--lg" fill="white" points="0,0 15,100 33,21 45,100 50,75 55,100 72,20 85,100 95,50 100,80 100,100 0,100" />
+    <polygon class="svg--sm" fill="white" points="10,10 30,100 65,21 90,100 100,75 100,100 0,100"/>
+    <polygon class="svg--lg" fill="white" points="10,10 15,100 33,21 45,100 50,75 55,100 72,20 85,100 95,50 100,80 100,100 0,100" />
   </svg>
 <div>
 <div style="width: 40%; height: 100%; float: left">

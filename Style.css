@@ -22,19 +22,15 @@ Gameboard
 /*-----Header-----*/
 
 header{
-  height: 5rem;
   background-color: blue;
   width: 100%;
   color: white;
   padding-left: 5px;
   padding-bottom: 2rem;
   font-size: 30px;
-}
-
-header {
-position: relative;
-height: 150px;
-background-image: linear-gradient(blue, #0f6bff);
+  position: relative;
+  height: 150px;
+  background-image: linear-gradient(blue, #0f6bff);
 }
 
 h1 {
