@@ -269,7 +269,9 @@ class Engine{
     private function gameTick($gameID){
         $log = $this->db->getGameLog($gameID);
 
-        $player = $this->whichPlayerTurn($gameID);
+        $whichPlayer = $this->whichPlayerTurn($gameID);
+        $player = $whichPlayer['player'];
+        $turns = $whichPlayer['turns'];
 
         $l = $log[count($log)-1];
 
@@ -280,7 +282,7 @@ class Engine{
 
 
         //PICK NEXT PLAYER
-        if(empty($playerID)){
+        if(empty($player)){
             $player = $this->pickNextPlayer($gameID, $turns);
             $this->db->insertGameLog('playerTurn', $gameID, $player, "");
             $message = "Spieler " . $player . " ist jetzt am Zug!";
@@ -311,9 +313,11 @@ class Engine{
         $log = $this->db->getGameLog($gameID);
         $player = "";
         $turns = 0;
+        
         foreach($log as $l){
             switch($l['EventName']){
                 case 'playerTurn':
+                   
                     $player = $l['EventVal1'];
                     break;
 
@@ -323,19 +327,62 @@ class Engine{
                     break;
             }
         }
-        return $player;
+        
+        return ['player'=>$player, 'turns'=>$turns];
+    }
+
+    /**
+     * returns a questin if one is open currently
+     */
+    private function openQuestion($gameID){
+        $log = $this->db->getGameLog($gameID);
+
+        $question = "";
+
+        foreach($log as $l){
+            switch($l['EventName']){
+                case 'uncoverQuestion':
+                    $question = $l['EventVal1'];
+                    break;
+                case 'playerAnswered':
+                    $question = "";
+                    break;
+            }
+        }
+
+        return $question;
+        
     }
 
     /**
      * AJAX Actions
      */
 
+
+     /**
+      * uncovers one question on the board, activated by user click
+      */
     public function uncoverAjaxAction(){
         //TURN?
         $gameID = $this->db->getCurrentGameID($_SESSION['roomID']);
-        $this->whichPlayerTurn($gameID);
+        $player = $this->whichPlayerTurn($gameID)['player'];
+        $questionID = $_POST['id'];
         
+        if($player != $_SESSION['user']){
+            echo json_encode(['success'=>false, 'message'=>'User not logged in!']);
+            return;
+        }
+
         //QUESTION OPEN?
+        $question = $this->openQuestion($gameID['idGame']);
+        if(empty($question)){
+            $this->db->insertGameLog('uncoverQuestion', $gameID, $questionID, "");
+            $message = "Spieler ". $player ." hat eine Frage aufgedeckt!";
+            $this->db->insertChat($message, "admin", $_SESSION['roomID']);
+        }
+
+        echo json_encode(['success'=>true]);
+
     }
 
     public function sendChatAjaxAction(){
