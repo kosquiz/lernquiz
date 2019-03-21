@@ -20,7 +20,8 @@ class Output{
 <p>(max. 45 Zeichen)</p>
 <div style="margin-top: 20px; margin-bottom: 20px">
 <button class="btn" type="submit">Raum erstellen</button>
-<input type="checkbox" name="private"> Privater Raum</input>
+<p>Privater Raum</p>
+<input type="checkbox" name="private"></input>
 </div>
 <input type="text" name="roomPassword" placeholder="Geben Sie ein Passwort für den Raum ein" maxlength="45" style="width: 16rem">Raum Passwort</input><p>(Feld Optional)</p>
 </form>
@@ -95,7 +96,6 @@ class Output{
 <div style="width: 40%; height: 100%; float: left">
 	<p>Raum "<?php echo 'test';?>" erstellt von "<?php echo 'test';?>"</p>
 </div>
-<div style="width: 60%; height: 100%; float: left;"><p class="head">Wer wird Jeopardymillionär</p></div>
 </div>
 </header>
 <!-- End Header -->
