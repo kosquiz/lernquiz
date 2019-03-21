@@ -241,10 +241,16 @@ class Database{
 	 * get answers to question
 	 */
 	public function getAnswers($questionID){
-		$sql = $this->db->prepare("SELECT * FROM answers WHERE Question_idQuestion=? ORDER BY idAnswer ASC");
+		$sql = $this->db->prepare("SELECT * FROM answer WHERE Question_idQuestion=? ORDER BY idAnswer ASC");
 		$sql->execute([$questionID]);
 		return $sql->fetchAll();
 
+	}
+
+	public function getQuestionAtPos($gameID, $pos){
+		$sql = $this->db->prepare("SELECT * FROM gamelog WHERE Game_idGame=? AND EventName='setQuestion' AND EventVal1=?");
+		$sql->execute([$gameID, $pos]);
+		return $sql->fetch();
 	}
 
 	
