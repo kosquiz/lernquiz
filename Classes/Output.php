@@ -110,8 +110,8 @@ class Output{
     <polygon class="svg--lg" fill="white" points="10,10 15,100 33,21 45,100 50,75 55,100 72,20 85,100 95,50 100,80 100,100 0,100" />
   </svg>
 <div>
-<div style="width: 40%; height: 100%; float: left">
-	<h1>Raum "<?php echo 'test';?>" erstellt von "<?php echo 'test';?>"</h1>
+<div style="width: 100%; height: 100%; float: left">
+	<h1>Raum "<?php echo 'seeeeeeeeeeeeeeeeeeehr langer text';?>" erstellt von "<?php echo 'test';?>"</h1>
 </div>
 </div>
 </header>
