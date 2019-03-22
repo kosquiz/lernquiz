@@ -14,6 +14,9 @@ class Engine{
 
 
 
+    /**
+     * Main index action show login, roomlist or game room
+     */
     public function indexAction(){
 
         if(!array_key_exists('logged_in', $_SESSION) || $_SESSION['logged_in']==false){
@@ -41,11 +44,17 @@ class Engine{
 
     }
 
+    /***
+     * Debug function
+     */
     public function debugAction(){
         $games = [['roomName'=>'Raum 1', 'id'=>1],['roomName'=>'Raum 2', 'id'=>2],['roomName'=>'Raum 3', 'id'=>3]];
         $this->output->indexOutput($games);
     }
 
+    /**
+     * Register a new user
+     */
     public function registerPostAction(){
 
         $user = $_POST['user'];
@@ -72,14 +81,23 @@ class Engine{
 
     }
 
+    /**
+     * Display register output
+     */
     public function registerAction(){
         $this->output->registerOutput(false);
     }
 
+    /**
+     * Display login output
+     */
     public function loginAction(){
         $this->output->loginOutput(false);
     }
 
+    /**
+     * Post action for the login
+     */
     public function loginPostAction(){
 
         $user = $_POST['user'];
@@ -110,13 +128,20 @@ class Engine{
 
     }
 
+    /**
+     * Logout
+     */
     public function logoutAction(){
         unset($_SESSION['user']);
         unset($_SESSION['logged_in']);
+        unset($_SESSION['roomID']);
         header('Location: index.php');
     }
 
 
+    /**
+     * create a new game room
+     */
     public function createGameRoomAction(){
 
         if(!array_key_exists('logged_in', $_SESSION)){
@@ -148,6 +173,9 @@ class Engine{
         header('Location: index.php');
     }
 
+    /**
+     * Join a game room
+     */
     public function joinGameAction(){
         
         if(!array_key_exists('logged_in', $_SESSION) || empty($_POST['roomID'])){
@@ -173,6 +201,9 @@ class Engine{
         header('Location: index.php');
     }
 
+    /**
+     * Leave a game room
+     */
     public function leaveGameRoomAction(){
         unset($_SESSION['roomID']);
         $this->db->setGameRoom(NULL, $_SESSION['user']);
@@ -183,6 +214,9 @@ class Engine{
      * Helper Functions
      */
 
+    /**
+     * List active rooms
+     */
     private function checkActiveGames(){
         $rooms = $this->db->getGameRooms();
         $users = $this->db->getActiveUsers();
@@ -228,6 +262,9 @@ class Engine{
 
     }
 
+    /**
+     * get questionID from questionPosition on board
+     */
     private function getQuestionID($gameID, $questionPos){
         $log = $this->db->getGameLog($gameID);
         
@@ -238,6 +275,9 @@ class Engine{
         }
     }
 
+    /**
+     * go over gamelog and generate game board and questions
+     */
     private function getGameBoard($gameID){
         $log = $this->db->getGameLog($gameID);
         $gameboard = [];
@@ -278,6 +318,9 @@ class Engine{
 
     }
 
+    /**
+     * pick next player if turn is over
+     */
     private function gameTick($gameID){
         $log = $this->db->getGameLog($gameID);
 
@@ -287,7 +330,6 @@ class Engine{
 
         $l = $log[count($log)-1];
 
-        //ANSWER QUESTION
         if($l['EventName']=='playerAnswered'){
             $board = $this->getGameBoard;
         }
@@ -303,6 +345,9 @@ class Engine{
 
     }
 
+    /**
+     * pick next player turn
+     */
     private function pickNextPlayer($gameID, $turns){
         $users = $this->getUsersInRoom();
         $userCount = count($users);
@@ -311,6 +356,9 @@ class Engine{
 
     }
 
+    /**
+     * get all users in one room
+     */
     private function getUsersInRoom(){
         $users = $this->db->getActiveUsers();
         $active = [];
@@ -321,6 +369,9 @@ class Engine{
         return $active;
     }
 
+    /**
+     * returns which players turn it is
+     */
     private function whichPlayerTurn($gameID){
         $log = $this->db->getGameLog($gameID);
         $player = "";
@@ -370,6 +421,9 @@ class Engine{
      * AJAX Actions
      */
 
+    /**
+     * Helper function to verify if players turn
+     */
     private function verifyAjax(){
          //TURN?
          $gameID = $this->db->getCurrentGameID($_SESSION['roomID']);
@@ -392,6 +446,9 @@ class Engine{
          return ['player'=>$player, 'gameID'=>$gameID];
     }
 
+    /**
+     * User answers question by clicking answer 
+     */
     public function answerQuestionAjaxAction(){
         $res = $this->verifyAjax();
         $player = $res['player'];
@@ -461,6 +518,9 @@ class Engine{
 
     }
 
+    /**
+     * User sends chat message
+     */
     public function sendChatAjaxAction(){
 
         if($_SESSION['logged_in']==false){
@@ -477,6 +537,9 @@ class Engine{
 
     }
 
+    /**
+     * Returns chat history
+     */
     public function getChatAjaxAction(){
         
         if($_SESSION['logged_in']==false){
@@ -492,6 +555,9 @@ class Engine{
 
     }
 
+    /**
+     * set user active in last 30 seconds
+     */
     public function setUserActiveAjaxAction(){
 
         if(!array_key_exists('user', $_SESSION)){
@@ -502,11 +568,17 @@ class Engine{
         echo "user set active";
     }
 
+    /**
+     * get active users
+     */
     public function getUserActiveAjaxAction(){
         $users = $this->getUsersInRoom();
         echo json_encode(['success'=>true, 'users'=>$users]);
     }
 
+    /**
+     * run game loop and return game state as json
+     */
     public function gameTickAjaxAction(){
         $gameID = $this->db->getCurrentGameID($_SESSION['roomID']);
         $board = $this->getGameBoard($gameID['idGame']);
