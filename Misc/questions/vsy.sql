@@ -16,7 +16,13 @@ INSERT INTO answer (Answer, Correct, Question_idQuestion) VALUES ("5 Byte", 0, 3
 INSERT INTO answer (Answer, Correct, Question_idQuestion) VALUES ("64 Bit", 0, 3);
 INSERT INTO answer (Answer, Correct, Question_idQuestion) VALUES ("128 Bit", 1, 3);
 
-INSERT INTO Question(Category, Question, Difficulty) VALUES('VSY', 'DrUMM', 4);
+INSERT INTO Question(Category, Question, Difficulty) VALUES('VSY', 'Für was steht DNS?', 4);
+INSERT INTO answer (Answer, Correct, Question_idQuestion) VALUES ("Domain Nullify Storage", 0, 3);
+INSERT INTO answer (Answer, Correct, Question_idQuestion) VALUES ("Dean Nord Stud", 0, 3);
+INSERT INTO answer (Answer, Correct, Question_idQuestion) VALUES ("Do Not Surf", 0, 3);
+INSERT INTO answer (Answer, Correct, Question_idQuestion) VALUES ("Domain Name Service", 1, 3);
+
+
 INSERT INTO Question(Category, Question, Difficulty) VALUES('VSY', 'DrUMM', 5);
 INSERT INTO Question(Category, Question, Difficulty) VALUES('VSY', 'DrUMM', 1);
 INSERT INTO Question(Category, Question, Difficulty) VALUES('VSY', 'DrUMM', 2);
