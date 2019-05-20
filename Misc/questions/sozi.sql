@@ -1,3 +1,4 @@
+#fängt an mit 11
 INSERT INTO Question(Category, Question, Difficulty) VALUES('SOZI', 'Wem ist der Abgeordnete nicht untergeordnet?', 1);
 INSERT INTO Question(Category, Question, Difficulty) VALUES('SOZI', 'Wie oft wird der Bundestag (i.d.R) gewählt?', 2);
 INSERT INTO Question(Category, Question, Difficulty) VALUES('SOZI', 'Wie heisst das Wahlrecht bei dem nur der Wahlkreisgewinner einen Sitzim Parlament bekommt und alle anderen "unter den Tisch" fallen?"', 3);

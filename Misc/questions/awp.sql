@@ -1,4 +1,4 @@
-
+#fängt an mit 21
 INSERT INTO Question(Category, Question, Difficulty) VALUES('AWP', 'DrUMM', 1);
 INSERT INTO Question(Category, Question, Difficulty) VALUES('AWP', 'DrUMM', 2);
 INSERT INTO Question(Category, Question, Difficulty) VALUES('AWP', 'DrUMM', 3);
