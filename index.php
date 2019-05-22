@@ -3,6 +3,8 @@
 require_once "Classes/Output.php";
 require_once "Classes/Database.php";
 require_once "Classes/Engine.php";
+require_once "Classes/Controller.php";
+require_once "Classes/AjaxController.php";
 
 session_set_cookie_params('3600'); // 1 hour
 session_start();
@@ -10,6 +12,8 @@ session_start();
 $out = new Output();
 $db = new Database();
 $engine = new Engine($db, $out);
+$ajaxContr = new AjaxController($db, $out, $engine);
+$controller = new Controller($db, $out, $engine);
 
 
 $site = null;
@@ -20,66 +24,66 @@ switch($site){
 	
 	//LOGIN AND REGISTER
 	case "logout":
-		$engine->logoutAction();
+		$controller->logoutAction();
 		break;
 
 	case "login":
-		$engine->loginAction();
+		$controller->loginAction();
 		break;
 
 	case "doLogin":
-		$engine->loginPostAction();
+		$controller->loginPostAction();
 		break;
 
 	case "register":
-		$engine->registerAction();
+		$controller->registerAction();
 		break;
 
 	case "doRegister":
-		$engine->registerPostAction();
+		$controller->registerPostAction();
 		break;
 
 	//CHAT
 	case "getChat":
-		$engine->getChatAjaxAction();
+		$ajaxContr->getChatAjaxAction();
 		break;
 
 	case "sendChat":
-		$engine->sendChatAjaxAction();
+		$ajaxContr->sendChatAjaxAction();
 		break;
 	
 	case "setActive":
-		$engine->setUserActiveAjaxAction();
+		$ajaxContr->setUserActiveAjaxAction();
 		break;
 	
 	case "getActive":
-		$engine->getUserActiveAjaxAction();
+		$ajaxContr->getUserActiveAjaxAction();
 		break;
 
 	//GAME
 	case "gameTick":
-		$engine->gameTickAjaxAction();
+		$ajaxContr->gameTickAjaxAction();
 		break;
 
 	case "uncoverQuestion":
-		$engine->uncoverAjaxAction();
+		$ajaxContr->uncoverAjaxAction();
 		break;
 
 	case "answerQuestion":
-		$engine->answerQuestionAjaxAction();
+		$ajaxContr->answerQuestionAjaxAction();
 		break;
 
 	//ROOMS
 	case "createRoom":
-		$engine->createGameRoomAction();
+		$controller->createGameRoomAction();
 		break;
 
 	case "joinRoom":
-		$engine->joinGameAction();
+		$controller->joinGameAction();
 		break;
 
 	case "leaveRoom":
-		$engine->leaveGameRoomAction();
+		$controller->leaveGameRoomAction();
 		break;
 
 	case "reset":
@@ -92,10 +96,10 @@ switch($site){
 
 	case "debug":
 		
-		$engine->debugAction();
+		$controller->debugAction();
 		break;
 
 	default:
-		$engine->indexAction();
+		$controller->indexAction();
 		break;
 }
