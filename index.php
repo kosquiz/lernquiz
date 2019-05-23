@@ -94,6 +94,30 @@ switch($site){
 		$db->debug();
 		break;
 
+	/**
+	 * admin bereich
+	 */
+
+	case "adminPage":
+		$controller->adminAction();
+		break;
+
+	case "adminAddQuestion":
+		$controller->adminAddQuestionAction();
+		break;
+
+	case "adminDeleteQuestion":
+		$controller->adminDeleteQuestionAction();
+		break;
+
+	case "adminCorrectQuestion":
+		$controller->adminCorrectQuestionAction();
+		break;
+
+	case "adminAddAnswer":
+		$controller->adminAddAnswerAction();
+		break;
+
 	case "debug":
 		
 		$controller->debugAction();

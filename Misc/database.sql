@@ -187,10 +187,10 @@ INSERT INTO answer (Answer, Correct, Question_idQuestion) VALUES ("64 Bit", 0, 3
 INSERT INTO answer (Answer, Correct, Question_idQuestion) VALUES ("128 Bit", 1, 3);
 
 INSERT INTO Question(Category, Question, Difficulty) VALUES('VSY', 'Für was steht DNS?', 4);
-INSERT INTO answer (Answer, Correct, Question_idQuestion) VALUES ("Domain Nullify Storage", 0, 3);
-INSERT INTO answer (Answer, Correct, Question_idQuestion) VALUES ("Dean Nord Stud", 0, 3);
-INSERT INTO answer (Answer, Correct, Question_idQuestion) VALUES ("Do Not Surf", 0, 3);
-INSERT INTO answer (Answer, Correct, Question_idQuestion) VALUES ("Domain Name Service", 1, 3);
+INSERT INTO answer (Answer, Correct, Question_idQuestion) VALUES ("Domain Nullify Storage", 0, 4);
+INSERT INTO answer (Answer, Correct, Question_idQuestion) VALUES ("Dean Nord Stud", 0, 4);
+INSERT INTO answer (Answer, Correct, Question_idQuestion) VALUES ("Do Not Surf", 0, 4);
+INSERT INTO answer (Answer, Correct, Question_idQuestion) VALUES ("Domain Name Service", 1, 4);
 
 
 INSERT INTO Question(Category, Question, Difficulty) VALUES('VSY', 'DrUMM', 5);
@@ -259,10 +259,10 @@ INSERT INTO answer (Answer, Correct, Question_idQuestion) VALUES ("Blau", 0, 19)
 INSERT INTO answer (Answer, Correct, Question_idQuestion) VALUES ("Schwarz", 1, 19);
 
 INSERT INTO Question(Category, Question, Difficulty) VALUES('SOZI', 'Welches Recht hat ein MdB?', 5);
-INSERT INTO answer (Answer, Correct, Question_idQuestion) VALUES ("Brinesse Recht", 0, 19);
-INSERT INTO answer (Answer, Correct, Question_idQuestion) VALUES ("Impendanzgesetz", 0, 19);
-INSERT INTO answer (Answer, Correct, Question_idQuestion) VALUES ("Rechtsfahrrecht", 0, 19);
-INSERT INTO answer (Answer, Correct, Question_idQuestion) VALUES ("Zeugnissverweigerungsrecht", 1, 19);
+INSERT INTO answer (Answer, Correct, Question_idQuestion) VALUES ("Brinesse Recht", 0, 20);
+INSERT INTO answer (Answer, Correct, Question_idQuestion) VALUES ("Impendanzgesetz", 0, 20);
+INSERT INTO answer (Answer, Correct, Question_idQuestion) VALUES ("Rechtsfahrrecht", 0, 20);
+INSERT INTO answer (Answer, Correct, Question_idQuestion) VALUES ("Zeugnissverweigerungsrecht", 1, 20);
 
 #fängt an mit 21
 INSERT INTO Question(Category, Question, Difficulty) VALUES('AWP', 'DrUMM', 1);

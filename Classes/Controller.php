@@ -209,5 +209,59 @@ class Controller
         header('Location: index.php');
     }
 
+    /**
+     * admin actions
+     */
+
+     public function adminAction(){
+         $questions = $this->db->getAllQuestions();
+
+         $res = [];
+         $categories = [];
+         foreach($questions as $question){
+             $answers = $this->db->getAnswers($question['idQuestion']);
+             $res[] = ['question'=>$question, 'answers'=>$answers];
+
+             if(!in_array($question['Category'], $categories))
+                $categories[] = $question['Category'];
+         }
+
+         $this->output->adminPage(['res'=>$res, 'cats'=>$categories]);
+
+     }
+
+     public function adminAddQuestionAction(){
+         $question = $_POST['question'];
+         $cat = $_POST['category'];
+
+         $this->db->insertQuestion($question, $cat);
+
+         header('Location: index.php?site=adminPage');
+     }
+
+     public function adminDeleteQuestionAction(){
+         $questionID = $_POST['questionID'];
+         $this->db->deleteQuestion($questionID);
+
+         
+         header('Location: index.php?site=adminPage');
+     }
+
+     public function adminCorrectQuestionAction(){
+         $answerID = $_POST['answerID'];
+         $this->db->setAnswerActive($answerID);
+
+         
+         header('Location: index.php?site=adminPage');
+     }
+
+     public function adminAddAnswerAction(){
+         $questionID = $_POST['questionID'];
+         $answer = $_POST['answerText'];
+         $this->db->insertAnswer($questionID, $answer);
+
+         
+         header('Location: index.php?site=adminPage');
+     }
 
 }

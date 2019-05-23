@@ -247,12 +247,53 @@ class Database{
 
 	}
 
+	/**
+	 * get all questions
+	 */
+	public function getAllQuestions(){
+		$sql = $this->db->prepare("SELECT * FROM Question");
+		$sql->execute();
+		return $sql->fetchAll();
+	}
+
 	public function getQuestionAtPos($gameID, $pos){
 		$sql = $this->db->prepare("SELECT * FROM gamelog WHERE Game_idGame=? AND EventName='setQuestion' AND EventVal1=?");
 		$sql->execute([$gameID, $pos]);
 		return $sql->fetch();
 	}
 
+	/**
+	 * insert question
+	 */
+
+	 public function insertQuestion($question, $cat, $diff=1){
+		 $sql = $this->db->prepare("INSERT INTO Question (Question, Category, Difficulty) VALUES(?,?,?)");
+		 $sql->execute([$question, $cat, $diff]);
+		 return $this->db->lastInsertId();
+	 }
+
+	 public function insertAnswer($questionID, $answer, $correct=0){
+		 $sql = $this->db->prepare("INSERT INTO answer(Answer, Question_idQuestion, Correct) VALUES(?,?,?)");
+		 $sql->execute([$answer, $questionID, $correct]);
+		 return $this->db->lastInsertId();
+	 }
+
+	 public function deleteQuestion($questionID){
+		 $sql = $this->db->prepare("DELETE FROM answer WHERE Question_idQuestion=?");
+		 $sql->execute([$questionID]);
+		 $sql = $this->db->prepare("DELETE FROM Question WHERE idQuestion=?");
+		 $sql->execute([$questionID]);
+	 }
+
+	 public function setAnswerActive($answerID){
+		 $sql = $this->db->prepare("SELECT Question_idQuestion id FROM answer WHERE idAnswer=?");
+		 $sql->execute([$answerID]);
+		 $questionID = $sql->fetch();
+		 $sql = $this->db->prepare("UPDATE answer SET Correct=0 WHERE Question_idQuestion=?");
+		 $sql->execute([$questionID['id']]);
+		 $sql = $this->db->prepare("UPDATE answer SET Correct=1 WHERE idAnswer=?");
+		 $sql->execute([$answerID]);
+	 }
 	
 	public function debug(){
 		$user = "test";

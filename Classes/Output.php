@@ -180,4 +180,51 @@ endfor; ?>
 	<script src="quiz.js"></script>
 <?php
 	}
+
+
+	public function adminPage($res){
+
+		$cats = $res['cats'];
+		$res = $res['res'];
+		?>
+		<form action="index.php?site=adminAddQuestion" method="POST">
+		<input type="text" name="question">
+		<select name="category">
+		<?php foreach($cats as $cat):?>
+			<option value="<?php echo $cat; ?>"><?php echo $cat; ?></option>
+		<?php endforeach;?>
+		</select>
+		<button type="submit">Frage speichern</button>
+		</form>
+
+		<?php foreach($res as $question): ?>
+			<h2> <?php echo $question['question']['Question']; ?> </h2>
+			<h3> <?php echo $question['question']['Category']," ",$question['question']['Difficulty'] ; ?> </h3>
+			<form action="index.php?site=adminDeleteQuestion" method="POST">
+			<input type="hidden" name="questionID" value="<?php echo $question['question']['idQuestion']; ?>" >
+			<button type="submit">Löschen</button>
+			</form>
+		
+			<?php foreach($question['answers'] as $answer): ?>
+				<?php 
+					if($answer['Correct']==1)
+						echo "<b>";
+					echo $answer['Answer']; 
+					if($answer['Correct']==1)
+						echo "</b>";
+				?> 
+				<form action="index.php?site=adminCorrectQuestion" class="rightQuestion" method="POST">
+				<input type="hidden" name="answerID" value="<?php echo $answer['idAnswer']; ?>" >
+				<button type="submit">Richtige Antwort</button>
+				</form>
+			<?php endforeach; ?>
+
+			<form action="index.php?site=adminAddAnswer" method="POST">
+			<input type="hidden" name="questionID" value="<?php echo $question['question']['idQuestion']; ?>" >
+			<input type="text" name="answerText">
+			<button type="submit">Antwort speichern</button>
+			</form>
+		<?php endforeach;
+
+	}
 }
