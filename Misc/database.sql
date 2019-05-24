@@ -308,10 +308,10 @@ INSERT INTO answer (Answer, Correct, Question_idQuestion) VALUES ("Mengenmäßig
 INSERT INTO answer (Answer, Correct, Question_idQuestion) VALUES ("Zusammenarbeitend", 1, 35);
 
 INSERT INTO Question(Category, Question, Difficulty) VALUES('BWP', 'Welches ist kein Werbeträger für ein Produkt?', 1);
-INSERT INTO answer (Answer, Correct, Question_idQuestion) VALUES ("Zeitung", 0, 35);
-INSERT INTO answer (Answer, Correct, Question_idQuestion) VALUES ("Fahrzeuge", 0, 35);
-INSERT INTO answer (Answer, Correct, Question_idQuestion) VALUES ("Internet", 0, 35);
-INSERT INTO answer (Answer, Correct, Question_idQuestion) VALUES ("Fernsehspot", 1, 35);
+INSERT INTO answer (Answer, Correct, Question_idQuestion) VALUES ("Zeitung", 0, 36);
+INSERT INTO answer (Answer, Correct, Question_idQuestion) VALUES ("Fahrzeuge", 0, 36);
+INSERT INTO answer (Answer, Correct, Question_idQuestion) VALUES ("Internet", 0, 36);
+INSERT INTO answer (Answer, Correct, Question_idQuestion) VALUES ("Fernsehspot", 1, 36);
 
 
 INSERT INTO Question(Category, Question, Difficulty) VALUES('BWP', 'DrUMM', 2);

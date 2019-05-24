@@ -99,7 +99,7 @@ class Output{
 
 	}
 
-	public function gameBoardOutput(){
+	public function gameBoardOutput($info){
 ?>
 <div id="gameBoard">
 <link rel="stylesheet" href="Style.css">
@@ -111,7 +111,7 @@ class Output{
   </svg>
 <div>
 <div style="width: 100%; height: 100%; float: left">
-	<h1>Raum "<?php echo 'seeeeeeeeeeeeeeeeeeehr langer text';?>" erstellt von "<?php echo 'test';?>"</h1>
+	<h1>Raum "<?php echo $info['roomName'];?>" erstellt von "<?php echo $info['user'];?>"</h1>
 </div>
 </div>
 </header>
@@ -174,6 +174,8 @@ endfor; ?>
 </div>
 <!-- end chatbox-->
 
+<!-- game end box-->
+<?php  ?>
 
 
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
@@ -204,15 +206,15 @@ endfor; ?>
 			<input type="hidden" name="questionID" value="<?php echo $question['question']['idQuestion']; ?>" >
 			<button type="submit">Löschen</button>
 			</form>
-		
+
 			<?php foreach($question['answers'] as $answer): ?>
-				<?php 
+				<?php
 					if($answer['Correct']==1)
 						echo "<b>";
-					echo $answer['Answer']; 
+					echo $answer['Answer'];
 					if($answer['Correct']==1)
 						echo "</b>";
-				?> 
+				?>
 				<form action="index.php?site=adminCorrectQuestion" class="rightQuestion" method="POST">
 				<input type="hidden" name="answerID" value="<?php echo $answer['idAnswer']; ?>" >
 				<button type="submit">Richtige Antwort</button>

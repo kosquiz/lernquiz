@@ -3,34 +3,34 @@
 class Database{
 
 	private $db;
-	
+
 	public function __construct(){
 		$this->db = new PDO("mysql:dbname=kosquiz;host=127.0.0.1;charset=utf8", "root");
-		
+
 	}
 
-	
+
 	public function dropAndCreate(){
 		$this->db->exec("DROP SCHEMA IF EXISTS lernquiz; CREATE SCHEMA lernquiz;USE lernquiz");
-		
+
 		$sql = "CREATE SCHEMA IF NOT EXISTS lernquiz";
 		$this->db->exec($sql);
 	}
-	
+
 	/**
 	 * insert chat message by user
 	 */
 	public function insertChat($msg, $user, $gameRoomID){
 		$sql = $this->db->prepare("INSERT INTO chatmessage(Time, Message, Accounts_Username, GameRoom_idGameRoom) VALUES(NOW(), ?, ?, ?);");
 		$sql->execute([$msg,$user,$gameRoomID]);
-		
+
 	}
 
 	/**
 	 * get last 50 chat messages
 	 */
 	public function getChat($gameRoomID){
-		
+
 		$sql = $this->db->prepare("SELECT * FROM chatmessage WHERE GameRoom_idGameRoom = ? ORDER BY idChat DESC LIMIT 50;");
 		$sql->execute([$gameRoomID]);
 
@@ -53,14 +53,14 @@ class Database{
         return $allGameRooms;
 
     }
-	
+
 	/**
 	 * insert 1 user with pass
 	 */
 	public function insertUser($user,$pass){
 		$sql = $this->db->prepare("INSERT INTO accounts  VALUES(?, ?, 0, NULL)");
 		$sql->execute([$user,$pass]);
-		
+
 	}
 
 	/**
@@ -72,14 +72,14 @@ class Database{
 		$currUser = $sql->fetchAll();
 
 		return $currUser;
-	
+
 	}
-	
+
 	/**
 	 * set user activity  Inactive
 	 */
 	public function setUserActivity($user){
-		
+
 		$sql = $this->db->prepare("UPDATE accounts SET LastActivity = NOW() WHERE Username = ?;");
 		$sql->execute([$user]);
 
@@ -90,10 +90,10 @@ class Database{
 	 */
 	public function getActiveUsers(){
 		$inactive = Date("Y-m-d H:i:s", strtotime("-30 seconds"));
-		
+
 		$sql = $this->db->prepare("SELECT * FROM accounts WHERE LastActivity > '$inactive' ORDER BY Username ASC");
 		$sql->execute();
-		
+
 		$activeUsers = $sql->fetchAll();
 
 		return $activeUsers;
@@ -115,9 +115,9 @@ class Database{
 	public function checkUserPass($user){
 		$sql = $this->db->prepare("SELECT * FROM accounts WHERE Username LIKE ?");
 		$sql->execute([$user]);
-		
+
 		$currUser = $sql->fetch();
-		
+
 		return $currUser;
 
 	}
@@ -137,9 +137,9 @@ class Database{
 	public function getGameRooms(){
 		$sql = $this->db->prepare("SELECT * FROM GameRoom ORDER BY idGameRoom DESC");
 		$sql->execute();
-		
+
 		$allGameRooms = $sql->fetchAll();
-		
+
 		return $allGameRooms;
 	}
 
@@ -152,11 +152,11 @@ class Database{
         $sql->execute([$gameRoom]);
 
 	}
-	
+
 	/**
 	 * get gameroom info
 	 */
-	public function getGameRoomAction($idGameRoom){
+	public function getGameRoomInfo($idGameRoom){
 		$sql = $this->db->prepare("SELECT * FROM gameroom WHERE idGameRoom=?");
 		$sql->execute([$idGameRoom]);
 		return $sql->fetch();
@@ -208,18 +208,18 @@ class Database{
 		return $sql->fetch();
 
 	}
-	
+
 	/**
 	 * get 4 questions by category
 	 */
 	public function getQuestions($category){
-		$sql = $this->db->prepare("SELECT Question,idQuestion,Difficulty FROM 
+		$sql = $this->db->prepare("SELECT Question,idQuestion,Difficulty FROM
 		(SELECT * FROM Question WHERE Category LIKE ? ORDER BY RAND()) as rnd
-		GROUP BY rnd.Difficulty 
+		GROUP BY rnd.Difficulty
 		ORDER BY Difficulty ASC
 		LIMIT 4");
 		$sql->execute([$category]);
-		
+
 		$questions = $sql->fetchAll();
 
 		return $questions;
@@ -231,7 +231,7 @@ class Database{
 	public function getCategories(){
 		$sql = $this->db->prepare("SELECT Category FROM Question GROUP BY Category ORDER BY RAND() LIMIT 4;");
 		$sql->execute();
-		
+
 		$categorys = $sql->fetchAll();
 
 		return $categorys;
@@ -304,7 +304,7 @@ class Database{
 		 $sql = $this->db->prepare("UPDATE answer SET Correct=1 WHERE idAnswer=?");
 		 $sql->execute([$answerID]);
 	 }
-	
+
 	public function debug(){
 		$user = "test";
 		$pass = "123";
@@ -312,7 +312,7 @@ class Database{
         $msg = "Ich bin einge geile Schlange";
         $gameRoomID = "1";
 		$rows = $this->insertChat($msg, $user, $gameRoomID);
-		
+
 		echo '<pre>';
 		print_r($rows);
 		echo '</pre>';
