@@ -26,7 +26,8 @@ class Controller
 
         
         if(array_key_exists('roomID', $_SESSION)){
-            $this->output->gameBoardOutput();
+            $info = $this->db->getGameroomInfo($_SESSION['roomID']);
+            $this->output->gameBoardOutput(['roomName'=>$info['GameRoomName'], 'user'=>$info['Accounts_Username']]);
             return;
         }
         else{

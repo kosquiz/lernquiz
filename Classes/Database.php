@@ -151,7 +151,17 @@ class Database{
         $sql = $this->db->prepare("UPDATE gameroom SET isActive = True WHERE idGameRoom = ?;");
         $sql->execute([$gameRoom]);
 
-    }
+	}
+	
+	/**
+	 * get gameroom info
+	 */
+	public function getGameRoomAction($idGameRoom){
+		$sql = $this->db->prepare("SELECT * FROM gameroom WHERE idGameRoom=?");
+		$sql->execute([$idGameRoom]);
+		return $sql->fetch();
+	}
+
 
     /**
      * change gamroom to inActive
